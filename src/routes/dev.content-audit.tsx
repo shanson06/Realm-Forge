@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import { useMemo, type ReactNode } from "react";
 
 import { RealmShell } from "@/components/game/RealmShell";
@@ -16,6 +16,9 @@ import { quickPlayArtCoverage } from "@/game-data/card-art";
 import { QUICKPLAY_DECK_SIZE } from "@/game-data/quickplay";
 
 export const Route = createFileRoute("/dev/content-audit")({
+  beforeLoad: () => {
+    if (!import.meta.env.DEV) throw notFound();
+  },
   head: () => ({
     meta: [
       { title: "Content Audit — Realmforge" },

@@ -1,12 +1,16 @@
 # Realmforge — Release Candidate Notes
 
 **Build:** QuickPlay edition, cooperative + competitive, installable PWA
-**Date:** 2026-07-29
-**Status:** NOT READY (see "Blocking items")
+**Date:** 2026-08-01
+**Status:** SOURCE READY FOR OWNER REVIEW
+
+The source build passes its complete automated release gate. Public launch still requires the
+owner's QuickPlay deck-list approval and a short installed-device/offline smoke test.
 
 ## What ships in this candidate
 
 ### Cooperative QuickPlay — Rise of the Oathguard
+
 - One to three locally controlled Oathguard seats; boss health scales 12 / 16 / 20.
 - Three Oathguard Orders (Truthwardens, Honorbound, Dawnwatch) and three encounter decks
   (Veilborn, Whisper Court, The Breakers), each exactly 20 cards: ten titles, two copies.
@@ -18,41 +22,53 @@
   Loss when the Oathguard Crystal Spinner reaches zero.
 
 ### Competitive QuickPlay — Oathguard Trials
+
 - Local pass-and-play with a privacy handoff screen, or three heuristic opponents
   (Initiate, Guardian, Champion) that read only public information.
 - First player skips the first Draw; second player receives one Reserve token.
 - Aegis protects units, never the Gate. Deck-out is a loss condition.
 
 ### Shared systems
+
 - Four-step turn: Ready and Charge, Play, Battle, Pass. One permanent crystal per turn to a
   maximum of six, all permanent crystals turned face-up, then one draw. Costs are paid by
-  turning crystals face-down. There is no separate Gain/Refill action and no
-  Current/Maximum energy counter.
+  turning crystals face-down.
 - Two cards per turn unless a card effect says otherwise.
-- Deterministic pure-TypeScript rules engine: typed `MatchState`, explicit legal actions, a
-  reducer, a deterministic effect queue, and seeded randomization.
-- Every playable card resolves through a typed effect keyed by its stable source ID. No
-  English card text is parsed at runtime.
-- Interactive tutorial, collection and deck viewer, achievements, statistics, and
-  local-first persistence with versioned migrations plus JSON export/import.
-- Installable PWA with offline guest play, a non-blocking offline indicator, and an
-  update prompt that never replaces an active match.
+- Deterministic pure-TypeScript rules engine with typed state, explicit legal actions, a
+  reducer, deterministic effect queues, and seeded randomization.
+- Every playable card resolves through a typed effect keyed by its stable source ID. English
+  card text is never parsed at runtime.
+- Interactive tutorial, collection and deck viewer, achievements, statistics, and local-first
+  persistence with versioned migrations plus JSON export/import.
+- Installable PWA with offline guest play, a non-blocking offline indicator, and an update prompt
+  that never replaces an active match.
 
-## Fixed in this candidate
-- **Effect-coverage test was not enforcing coverage.** The previous check accepted
-  `not-implemented` as a valid status and read only the cooperative registry, so a card with
-  no typed effect could ship silently. Replaced by `src/tests/release-audit.test.ts`, which
-  asserts per deck that every title resolves to `implemented` or `no-effect-required` in the
-  registry for its own mode. All nine deck builds now pass this assertion.
+## Realmforge finish pass
 
-## Blocking items
-- Offline reload and PWA standalone layout are **Not Verified** against a deployed build.
-  The local run reached the harness time limit, and the single offline navigation attempted
-  happened on a first-ever load, before the service worker takes control.
+- Applied the original Relic-Tech Hopeful Fantasy visual system across the title, navigation,
+  cards, setup screens, and gameplay surfaces.
+- Rebuilt mode selection with illustrated cooperative/competitive choices, player counts,
+  match length, opponent type, recommended use, and explicit victory paths.
+- Added one shared sticky battle command bar to both game modes so round, phase, card limit,
+  active side, and primary actions remain visible on phones and tablets.
+- Corrected the PWA output path: Workbox now precaches 74+ client-shell assets instead of zero,
+  and `sw.js` is emitted into the public directory served by TanStack Start/Nitro.
+- Removed development diagnostics from the production menu and blocked the content-audit route
+  outside development builds.
+- Normalized source formatting and established a clean ESLint baseline.
+- Added `npm run check` as the single release gate for lint, typecheck, tests, and build.
 
 ## Verification summary
-- Automated: 133 tests across 5 files, all passing (`bunx vitest run`).
-- Typecheck: clean (`tsgo --noEmit`).
-- Dependency scan: no high or critical vulnerabilities.
-- Layout: no horizontal overflow and no console errors across small/large iPhone portrait
-  and landscape, iPad portrait and landscape, and desktop.
+
+- Lint: clean, with zero errors and zero warnings.
+- Typecheck: clean (`tsc --noEmit`).
+- Automated: 136 tests across 6 files, all passing (`vitest run`).
+- Production build: successful (`vite build`).
+- PWA build: worker emitted to `.output/public/sw.js`; 74+ app-shell entries precached.
+- Gameplay logic: unchanged by the visual and navigation finish pass.
+
+## Final owner checks
+
+- Approve the six curated 20-card QuickPlay deck lists as canonical.
+- On the deployed build, complete one portrait-phone match and one desktop match.
+- Install the PWA, launch once online, close it, disable the network, and confirm offline reload.

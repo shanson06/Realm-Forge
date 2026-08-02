@@ -10,7 +10,6 @@ import {
   Shield,
   Swords,
   UserRound,
-  Wrench,
 } from "lucide-react";
 
 import { RealmShell } from "@/components/game/RealmShell";
@@ -107,13 +106,6 @@ const ITEMS = [
     label: "Settings",
     detail: "Motion, sound, and accessibility",
     icon: SettingsIcon,
-    primary: false,
-  },
-  {
-    to: "/dev/content-audit",
-    label: "Content Audit",
-    detail: "Development data verification",
-    icon: Wrench,
     primary: false,
   },
 ] as const;
