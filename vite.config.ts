@@ -25,10 +25,10 @@ export default defineConfig({
         // mid-match.
         registerType: "prompt",
         filename: "sw.js",
-        // TanStack Start emits the browser bundle to dist/client; without this
-        // the worker lands outside the served root and every precache URL is
-        // prefixed with "client/".
-        outDir: "dist/client",
+        // TanStack Start/Nitro emits the browser bundle to .output/public.
+        // Generate the worker there so it is served from /sw.js and Workbox can
+        // discover the built client assets for offline precaching.
+        outDir: ".output/public",
         // public/manifest.webmanifest is the single source of truth.
         manifest: false,
         injectManifest: undefined,
