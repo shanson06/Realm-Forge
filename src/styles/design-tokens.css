@@ -1,0 +1,339 @@
+/*
+ * Realmforge design tokens.
+ *
+ * Two opposed identities share one token surface:
+ *   Oathguard   — royal blue base, gold trim, silver inner lines, cyan crystal energy.
+ *   Hollow Crown — blackglass, dark steel, fractured-crown violet.
+ *
+ * Components must reference these tokens. Never hardcode hex or Tailwind palette colors.
+ */
+
+:root {
+  /* --- Oathguard --- */
+  --oath-blue: oklch(0.46 0.16 262);
+  --oath-blue-deep: oklch(0.26 0.1 264);
+  --oath-blue-bright: oklch(0.62 0.17 258);
+  --oath-gold: oklch(0.81 0.14 86);
+  --oath-gold-deep: oklch(0.62 0.12 78);
+  --oath-silver: oklch(0.84 0.014 250);
+  --oath-cyan: oklch(0.81 0.13 200);
+  --oath-cyan-deep: oklch(0.6 0.12 210);
+
+  /* --- Hollow Crown --- */
+  --hollow-blackglass: oklch(0.15 0.021 285);
+  --hollow-steel: oklch(0.33 0.022 268);
+  --hollow-steel-light: oklch(0.47 0.02 268);
+  --hollow-violet: oklch(0.53 0.21 305);
+  --hollow-violet-bright: oklch(0.7 0.19 305);
+
+  /* --- Shared surfaces --- */
+  --realm-parchment: oklch(0.93 0.02 88);
+  --realm-parchment-deep: oklch(0.87 0.03 84);
+  --realm-ink: oklch(0.26 0.04 264);
+  --realm-ward: oklch(0.78 0.13 195);
+  --realm-danger: oklch(0.62 0.21 25);
+
+  /* --- Composite effects --- */
+  --gradient-oathguard: linear-gradient(
+    150deg,
+    var(--oath-blue-deep) 0%,
+    var(--oath-blue) 55%,
+    var(--oath-cyan-deep) 100%
+  );
+  --gradient-hollow: linear-gradient(
+    150deg,
+    var(--hollow-blackglass) 0%,
+    var(--hollow-steel) 60%,
+    var(--hollow-violet) 100%
+  );
+  --gradient-gilt: linear-gradient(100deg, var(--oath-gold-deep), var(--oath-gold), var(--oath-gold-deep));
+  --shadow-relic: 0 18px 42px -18px color-mix(in oklab, var(--oath-blue) 65%, transparent);
+  --shadow-hollow: 0 18px 42px -18px color-mix(in oklab, var(--hollow-violet) 60%, transparent);
+  --glow-crystal: 0 0 14px color-mix(in oklab, var(--oath-cyan) 70%, transparent);
+  --edge-gilt: inset 0 0 0 1px color-mix(in oklab, var(--oath-gold) 42%, transparent);
+  --edge-steel: inset 0 0 0 1px color-mix(in oklab, var(--hollow-steel-light) 55%, transparent);
+
+  /* --- Faction accents (crest ring, glow, and pattern per Order/encounter) --- */
+  --faction-truthwardens: oklch(0.78 0.14 210);
+  --faction-honorbound: oklch(0.8 0.15 68);
+  --faction-dawnwatch: oklch(0.86 0.15 96);
+  --faction-veilborn: oklch(0.62 0.19 315);
+  --faction-whisper: oklch(0.58 0.15 285);
+  --faction-breakers: oklch(0.63 0.19 32);
+
+  /* --- Material layers --- */
+  --texture-blackglass: radial-gradient(
+      120% 90% at 12% 0%,
+      color-mix(in oklab, var(--hollow-steel-light) 22%, transparent),
+      transparent 60%
+    ),
+    linear-gradient(180deg, color-mix(in oklab, var(--hollow-blackglass) 92%, transparent), transparent);
+  --texture-metal: repeating-linear-gradient(
+    115deg,
+    color-mix(in oklab, var(--oath-silver) 6%, transparent) 0 2px,
+    transparent 2px 7px
+  );
+  --texture-parchment: repeating-linear-gradient(
+    98deg,
+    color-mix(in oklab, var(--realm-parchment) 7%, transparent) 0 3px,
+    transparent 3px 9px
+  );
+  --glow-forge: 0 0 26px -6px color-mix(in oklab, var(--oath-gold) 55%, transparent);
+  /* Multiplier applied to every polish animation; the speed control rewrites it. */
+  --anim-scale: 1;
+}
+
+@theme inline {
+  --color-oath-blue: var(--oath-blue);
+  --color-oath-blue-deep: var(--oath-blue-deep);
+  --color-oath-blue-bright: var(--oath-blue-bright);
+  --color-oath-gold: var(--oath-gold);
+  --color-oath-gold-deep: var(--oath-gold-deep);
+  --color-oath-silver: var(--oath-silver);
+  --color-oath-cyan: var(--oath-cyan);
+  --color-oath-cyan-deep: var(--oath-cyan-deep);
+  --color-hollow-blackglass: var(--hollow-blackglass);
+  --color-hollow-steel: var(--hollow-steel);
+  --color-hollow-steel-light: var(--hollow-steel-light);
+  --color-hollow-violet: var(--hollow-violet);
+  --color-hollow-violet-bright: var(--hollow-violet-bright);
+  --color-realm-parchment: var(--realm-parchment);
+  --color-realm-parchment-deep: var(--realm-parchment-deep);
+  --color-realm-ink: var(--realm-ink);
+  --color-realm-ward: var(--realm-ward);
+  --color-realm-danger: var(--realm-danger);
+  --font-display: "Cinzel", Georgia, serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
+@utility surface-oathguard {
+  background-image: var(--gradient-oathguard);
+  box-shadow: var(--edge-gilt), var(--shadow-relic);
+}
+
+@utility surface-hollow {
+  background-image: var(--gradient-hollow);
+  box-shadow: var(--edge-steel), var(--shadow-hollow);
+}
+
+@utility text-gilt {
+  background-image: var(--gradient-gilt);
+  background-clip: text;
+  color: transparent;
+}
+
+@utility crystal-glow {
+  box-shadow: var(--glow-crystal);
+}
+
+@utility forge-glow {
+  box-shadow: var(--glow-forge);
+}
+
+/* Layered materials — always used behind text, never over it. */
+@utility layer-blackglass {
+  background-image: var(--texture-blackglass), var(--gradient-hollow);
+}
+
+@utility layer-metal {
+  background-image: var(--texture-metal), var(--gradient-oathguard);
+}
+
+@utility layer-parchment {
+  background-image: var(--texture-parchment);
+}
+
+/* Solid parchment rules panel — dark ink on aged paper, as on the printed cards. */
+@utility panel-parchment {
+  background-color: var(--realm-parchment);
+  background-image: var(--texture-parchment),
+    linear-gradient(160deg, transparent 40%, color-mix(in oklab, var(--realm-parchment-deep) 80%, transparent));
+  color: var(--realm-ink);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--oath-gold-deep) 45%, transparent);
+}
+
+/* Gilded double edge used by card frames, gates and board sockets. */
+@utility edge-double-gilt {
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--oath-gold) 70%, transparent),
+    inset 0 0 0 4px color-mix(in oklab, var(--oath-blue-deep) 85%, transparent),
+    inset 0 0 0 5px color-mix(in oklab, var(--oath-gold) 35%, transparent),
+    var(--shadow-relic);
+}
+
+@utility edge-double-hollow {
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--hollow-violet-bright) 55%, transparent),
+    inset 0 0 0 4px color-mix(in oklab, var(--hollow-blackglass) 90%, transparent),
+    inset 0 0 0 5px color-mix(in oklab, var(--hollow-steel-light) 45%, transparent),
+    var(--shadow-hollow);
+}
+
+/* Battlefield bed: stone flagstones washed with Forge light. */
+@utility board-bed {
+  background-image:
+    radial-gradient(120% 80% at 50% 0%, color-mix(in oklab, var(--oath-blue) 22%, transparent), transparent 70%),
+    repeating-linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--oath-silver) 4%, transparent) 0 1px,
+      transparent 1px 64px
+    ),
+    linear-gradient(180deg, color-mix(in oklab, var(--oath-blue-deep) 70%, transparent), transparent);
+}
+
+/* --- Animation and feedback ------------------------------------------------
+ * Every duration is multiplied by --anim-scale so the animation-speed control
+ * and reduced motion can shorten or remove motion without touching component
+ * code. Animations are decorative only; state is already resolved when they run.
+ */
+@keyframes realm-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes realm-arrive {
+  0% { opacity: 0; transform: translateY(14px) scale(0.94); }
+  70% { opacity: 1; transform: translateY(-2px) scale(1.02); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes realm-draw {
+  from { opacity: 0; transform: translateX(-18px) rotate(-4deg); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes realm-pulse-ring {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--oath-cyan) 55%, transparent); }
+  50% { box-shadow: 0 0 0 6px color-mix(in oklab, var(--oath-cyan) 0%, transparent); }
+}
+@keyframes realm-shimmer {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.35); }
+}
+@keyframes realm-shake {
+  0%, 100% { transform: none; }
+  20% { transform: translateX(-3px); }
+  40% { transform: translateX(3px); }
+  60% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+}
+@keyframes realm-rise {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes realm-fx-flash {
+  0% { opacity: 0; }
+  25% { opacity: 0.55; }
+  100% { opacity: 0; }
+}
+
+/* Full-screen cue flash. Colour is set per cue via --realm-fx-tint, and a
+ * matching ring keeps the effect readable for colour-blind players. */
+.realm-fx-flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 55%,
+    color-mix(in oklab, var(--realm-fx-tint, var(--oath-cyan)) 34%, transparent),
+    transparent 62%
+  );
+  box-shadow: inset 0 0 0 3px color-mix(in oklab, var(--realm-fx-tint, var(--oath-cyan)) 40%, transparent);
+  animation: realm-fx-flash calc(0.6s * var(--anim-scale)) ease-out both;
+}
+.realm-reduced-motion .realm-fx-flash,
+html[data-animation-speed="off"] .realm-fx-flash {
+  display: none;
+}
+
+@utility realm-fade-in {
+  animation: realm-fade-in calc(0.3s * var(--anim-scale)) ease-out both;
+}
+@utility realm-arrive {
+  animation: realm-arrive calc(0.42s * var(--anim-scale)) cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+@utility realm-draw-in {
+  animation: realm-draw calc(0.32s * var(--anim-scale)) ease-out both;
+}
+@utility realm-target-glow {
+  animation: realm-pulse-ring calc(1.4s * var(--anim-scale)) ease-out infinite;
+}
+@utility realm-shimmer {
+  animation: realm-shimmer calc(2.4s * var(--anim-scale)) ease-in-out infinite;
+}
+@utility realm-impact {
+  animation: realm-shake calc(0.35s * var(--anim-scale)) ease-in-out both;
+}
+@utility realm-rise {
+  animation: realm-rise calc(0.36s * var(--anim-scale)) ease-out both;
+}
+
+/* Animation speed control. "off" removes decorative motion entirely. */
+html[data-animation-speed="fast"] { --anim-scale: 0.6; }
+html[data-animation-speed="reduced"] { --anim-scale: 1.6; }
+html[data-animation-speed="off"] * { animation: none !important; }
+
+/* Screen shake is separable from the wider reduced-motion switch. */
+.realm-no-shake .realm-impact,
+.realm-reduced-motion .realm-impact {
+  animation: none !important;
+}
+
+/* Visible focus everywhere, including switch and keyboard navigation. */
+:where(a, button, [role="button"], input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--oath-cyan);
+  outline-offset: 2px;
+  border-radius: 0.35rem;
+}
+
+/* Honour the OS setting as well as the in-app toggle. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.realm-reduced-motion *,
+.realm-reduced-motion *::before,
+.realm-reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+}
+
+.realm-large-text {
+  font-size: 1.125rem;
+}
+
+/* Larger text must never clip: allow wrapping and drop fixed line clamps. */
+.realm-large-text .line-clamp-4,
+.realm-large-text .line-clamp-3,
+.realm-large-text .line-clamp-2 {
+  -webkit-line-clamp: unset;
+  display: block;
+  overflow: visible;
+}
+.realm-large-text .truncate {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+}
+
+.realm-high-contrast {
+  --oath-gold: oklch(0.92 0.16 92);
+  --oath-silver: oklch(0.96 0.01 250);
+  --hollow-violet-bright: oklch(0.82 0.19 305);
+  --foreground: oklch(0.99 0 0);
+  --muted-foreground: oklch(0.88 0.01 250);
+  --border: oklch(0.7 0.03 262);
+}
+.realm-high-contrast * {
+  text-shadow: none;
+}
+
+/* Respect iPhone / iPad safe areas on every full-bleed shell. */
+@utility safe-shell {
+  padding-left: max(env(safe-area-inset-left), 0px);
+  padding-right: max(env(safe-area-inset-right), 0px);
+  padding-top: max(env(safe-area-inset-top), 0px);
+  padding-bottom: max(env(safe-area-inset-bottom), 0px);
+}
