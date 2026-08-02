@@ -5,14 +5,7 @@
  * Nothing here reads `rules_text` at runtime.
  */
 import { GameMode } from "@/game-data/schema";
-import {
-  cue,
-  damageUnit,
-  drawCard,
-  log,
-  moveToDiscard,
-  restoreWard,
-} from "../mutations";
+import { cue, damageUnit, drawCard, log, moveToDiscard, restoreWard } from "../mutations";
 import { definitionOf } from "../queries";
 import {
   HOLLOW,
@@ -60,7 +53,9 @@ registerPromptResolver("tru-003-discard", (draft, chosen) => {
 
 registerPromptResolver("tru-004-order", (draft, chosen) => {
   // Two cards were lifted off the encounter deck; the chosen one returns on top.
-  const lifted = (draft.prompt && draft.prompt.kind === "encounterOrder" ? draft.prompt.revealedIds : []) as string[];
+  const lifted = (
+    draft.prompt && draft.prompt.kind === "encounterOrder" ? draft.prompt.revealedIds : []
+  ) as string[];
   const deck = encounterDeck(draft);
   const top = chosen[0] ?? lifted[0];
   const bottom = lifted.find((id) => id !== top);
@@ -72,7 +67,9 @@ registerPromptResolver("tru-004-order", (draft, chosen) => {
 registerPromptResolver("tru-010-target", (draft, chosen) => {
   const id = chosen[0];
   if (!id) {
-    log(draft, "Verdict Seeker finds no enemy that entered play this round.", { playerId: OATHGUARD });
+    log(draft, "Verdict Seeker finds no enemy that entered play this round.", {
+      playerId: OATHGUARD,
+    });
     return;
   }
   log(draft, "Verdict Seeker deals 1 damage.", { playerId: OATHGUARD });
@@ -111,7 +108,8 @@ const EFFECTS: EffectImplementation[] = [
   {
     cardId: "RF-OATH-TRU-001",
     mode: GameMode.Cooperative,
-    sourceText: "Deploy: Look at the top encounter card. You may leave it or place it on the bottom.",
+    sourceText:
+      "Deploy: Look at the top encounter card. You may leave it or place it on the bottom.",
     trigger: "deploy",
     handler: (draft, ctx) => {
       const deck = encounterDeck(draft);
@@ -125,7 +123,8 @@ const EFFECTS: EffectImplementation[] = [
         sourceInstanceId: ctx.selfId,
         revealedIds: [deck[0]],
         style: "bottomOrKeep",
-        description: "Beacon Initiate: leave this encounter card on top, or place it on the bottom.",
+        description:
+          "Beacon Initiate: leave this encounter card on top, or place it on the bottom.",
       };
     },
   },
@@ -168,7 +167,9 @@ const EFFECTS: EffectImplementation[] = [
     handler: (draft, ctx) => {
       const deck = encounterDeck(draft);
       if (deck.length < 2) {
-        log(draft, "Clear Path Tactic finds fewer than two encounter cards.", { playerId: OATHGUARD });
+        log(draft, "Clear Path Tactic finds fewer than two encounter cards.", {
+          playerId: OATHGUARD,
+        });
         return;
       }
       const lifted = deck.splice(0, 2);
@@ -178,7 +179,8 @@ const EFFECTS: EffectImplementation[] = [
         sourceInstanceId: ctx.selfId,
         revealedIds: lifted,
         style: "chooseTop",
-        description: "Clear Path Tactic: choose which card goes on top. The other goes to the bottom.",
+        description:
+          "Clear Path Tactic: choose which card goes on top. The other goes to the bottom.",
       };
     },
   },
@@ -199,7 +201,8 @@ const EFFECTS: EffectImplementation[] = [
   {
     cardId: "RF-OATH-TRU-007",
     mode: GameMode.Cooperative,
-    sourceText: "When this attacks a unit, target the Hollow Crown unit with the lowest remaining DEF.",
+    sourceText:
+      "When this attacks a unit, target the Hollow Crown unit with the lowest remaining DEF.",
     trigger: "static",
     attackTargetRule: "lowest-remaining-def-unit",
   },
@@ -209,13 +212,12 @@ const EFFECTS: EffectImplementation[] = [
     sourceText: "Discard a Hollow Crown Relic or Dark Event in play with Threat 3 or less.",
     trigger: "deploy",
     ambiguity:
-      "Resolved from source, not a judgement call: Realmforge_Volume_1_Foundation.md states \"Hollow Crown cards use Threat rather than Energy. The database field `cost` stores Threat for Hollow Crown cards.\" Threat therefore reads the printed cost of the Hollow Crown card, so this discards a Hollow Crown Relic or Dark Event in play with cost/Threat 3 or less.",
+      'Resolved from source, not a judgement call: Realmforge_Volume_1_Foundation.md states "Hollow Crown cards use Threat rather than Energy. The database field `cost` stores Threat for Hollow Crown cards." Threat therefore reads the printed cost of the Hollow Crown card, so this discards a Hollow Crown Relic or Dark Event in play with cost/Threat 3 or less.',
     handler: (draft, ctx) => {
       const legal = Object.values(draft.board.instances)
         .filter(
           (inst) =>
-            inst.ownerId === HOLLOW &&
-            (inst.zone === "supportSlot" || inst.zone === "unitSlot"),
+            inst.ownerId === HOLLOW && (inst.zone === "supportSlot" || inst.zone === "unitSlot"),
         )
         .filter((inst) => {
           const card = definitionOf(draft as never, inst.instanceId);
@@ -291,7 +293,9 @@ const EFFECTS: EffectImplementation[] = [
         .filter((id): id is string => id !== null)
         .filter((id) => draft.board.instances[id].enteredOnRound === draft.round);
       if (legal.length === 0) {
-        log(draft, "Verdict Seeker finds no enemy that entered play this round.", { playerId: OATHGUARD });
+        log(draft, "Verdict Seeker finds no enemy that entered play this round.", {
+          playerId: OATHGUARD,
+        });
         return;
       }
       draft.prompt = {
@@ -327,7 +331,10 @@ const EFFECTS: EffectImplementation[] = [
     sourceText: "Surge. When this attacks a Gate, Restore 1 Ward to the Oathguard Gate.",
     trigger: "onAttack",
     handler: (draft, ctx) => {
-      if (ctx.attackTargetId === TARGET_HOLLOW_GATE || ctx.attackTargetId === TARGET_OATHGUARD_GATE) {
+      if (
+        ctx.attackTargetId === TARGET_HOLLOW_GATE ||
+        ctx.attackTargetId === TARGET_OATHGUARD_GATE
+      ) {
         log(draft, "Mirror-Sky Gryphon restores 1 Ward.", { playerId: OATHGUARD });
         restoreWard(draft, OATHGUARD, 1);
         cue(draft, "damage", ctx.selfId);

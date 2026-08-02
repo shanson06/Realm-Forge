@@ -45,9 +45,7 @@ function newDuel(
   ],
   firstSeatId: TrialsSeatId = P1,
 ): TrialsMatchState {
-  return startTrialsMatch(
-    createTrialsMatch({ seed: SEED, seats, firstSeatId, shuffle: false }),
-  );
+  return startTrialsMatch(createTrialsMatch({ seed: SEED, seats, firstSeatId, shuffle: false }));
 }
 
 function keep(state: TrialsMatchState): TrialsMatchState {
@@ -152,10 +150,7 @@ describe("Reserve token", () => {
     expect(state.players[P2].energy.temporaryCrystals).toBe(before + 1);
     expect(state.players[P2].reserveToken).toBe("spent");
 
-    state = applyTrialsActions(state, [
-      { kind: "beginStep", step: "battle" },
-      { kind: "endTurn" },
-    ]);
+    state = applyTrialsActions(state, [{ kind: "beginStep", step: "battle" }, { kind: "endTurn" }]);
     expect(state.players[P2].energy.temporaryCrystals).toBe(0);
   });
 
@@ -193,7 +188,12 @@ describe("Play limits and energy", () => {
     let played = 0;
     for (const instanceId of [...state.players[seatId].hand]) {
       if (!canPlayCard(state, instanceId).legal) continue;
-      state = applyTrialsAction(state, { kind: "playCard", instanceId, slotIndex: null, targetIds: [] }).state;
+      state = applyTrialsAction(state, {
+        kind: "playCard",
+        instanceId,
+        slotIndex: null,
+        targetIds: [],
+      }).state;
       if (state.prompt) state = applyTrialsAction(state, { kind: "cancelPending" }).state;
       played += 1;
       if (played === 2) break;
@@ -380,10 +380,7 @@ describe("Win conditions", () => {
 describe("Pass-and-play privacy", () => {
   it("pauses on a handoff between two human players and hides nothing in the log", () => {
     let state = keep(newDuel());
-    state = applyTrialsActions(state, [
-      { kind: "beginStep", step: "battle" },
-      { kind: "endTurn" },
-    ]);
+    state = applyTrialsActions(state, [{ kind: "beginStep", step: "battle" }, { kind: "endTurn" }]);
     expect(state.handoffPending).toBe(true);
     expect(state.pendingSeatId).toBe(P2);
     // The incoming player's hand is not readable from the log.
@@ -397,10 +394,7 @@ describe("Pass-and-play privacy", () => {
     let state = keep(
       newDuel([human("trials-truthwardens", "P1"), ai("trials-honorbound", "guardian")], P1),
     );
-    state = applyTrialsActions(state, [
-      { kind: "beginStep", step: "battle" },
-      { kind: "endTurn" },
-    ]);
+    state = applyTrialsActions(state, [{ kind: "beginStep", step: "battle" }, { kind: "endTurn" }]);
     expect(state.handoffPending).toBe(false);
     expect(state.activeSeatId).toBe(P2);
   });
@@ -429,10 +423,7 @@ describe("Computer opponents", () => {
     let state = keep(
       newDuel([human("trials-truthwardens", "P1"), ai("trials-honorbound", difficulty)], P1),
     );
-    state = applyTrialsActions(state, [
-      { kind: "beginStep", step: "battle" },
-      { kind: "endTurn" },
-    ]);
+    state = applyTrialsActions(state, [{ kind: "beginStep", step: "battle" }, { kind: "endTurn" }]);
     expect(state.activeSeatId).toBe(P2);
     const after = runAiTurns(state, 40);
     // The computer either handed the turn back or the duel ended.
@@ -452,10 +443,7 @@ describe("Computer opponents", () => {
     let state = keep(
       newDuel([human("trials-truthwardens", "P1"), ai("trials-dawnwatch", "champion")], P1),
     );
-    state = applyTrialsActions(state, [
-      { kind: "beginStep", step: "battle" },
-      { kind: "endTurn" },
-    ]);
+    state = applyTrialsActions(state, [{ kind: "beginStep", step: "battle" }, { kind: "endTurn" }]);
     const legal = enumerateActions(state).map((a) => JSON.stringify(a));
     const decision = chooseTrialsAction(state, "champion");
     if (decision && decision.action.kind !== "mulligan") {

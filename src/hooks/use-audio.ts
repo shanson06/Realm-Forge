@@ -1,14 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import type { CueId } from "@/audio/cues";
-import {
-  onCaption,
-  playCue,
-  startBed,
-  stopAllBeds,
-  stopBed,
-  unlockAudio,
-} from "@/audio/engine";
+import { onCaption, playCue, startBed, stopAllBeds, stopBed, unlockAudio } from "@/audio/engine";
 
 /** Unlocks audio on the first user gesture, as browsers require. */
 export function useAudioUnlock() {

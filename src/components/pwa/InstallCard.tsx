@@ -26,8 +26,8 @@ export function InstallCard() {
         <WifiOff aria-hidden className="mt-0.5 size-3.5 shrink-0" />
         <span>
           After your first visit, the tutorial, cooperative and competitive QuickPlay,
-          pass-and-play, collection, decks, settings, and saved matches all work with no
-          connection. Only cloud sign-in and sync need the network.
+          pass-and-play, collection, decks, settings, and saved matches all work with no connection.
+          Only cloud sign-in and sync need the network.
         </span>
       </p>
       {!installed && <InstallRealmforge className="mt-3" />}

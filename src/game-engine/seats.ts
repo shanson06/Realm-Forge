@@ -61,10 +61,14 @@ export function seatSummaries(state: MatchState) {
       displayName: seat.displayName,
       faction: seat.faction,
       deckId: seat.deckId,
-      handCount: seatId === state.activeSeatId ? state.players[OATHGUARD].hand.length : seat.hand.length,
-      deckCount: seatId === state.activeSeatId ? state.players[OATHGUARD].deck.length : seat.deck.length,
+      handCount:
+        seatId === state.activeSeatId ? state.players[OATHGUARD].hand.length : seat.hand.length,
+      deckCount:
+        seatId === state.activeSeatId ? state.players[OATHGUARD].deck.length : seat.deck.length,
       discardCount:
-        seatId === state.activeSeatId ? state.players[OATHGUARD].discard.length : seat.discard.length,
+        seatId === state.activeSeatId
+          ? state.players[OATHGUARD].discard.length
+          : seat.discard.length,
       energy: seatId === state.activeSeatId ? state.players[OATHGUARD].energy : seat.energy,
       active: seatId === state.activeSeatId && state.turnSide === OATHGUARD,
     };

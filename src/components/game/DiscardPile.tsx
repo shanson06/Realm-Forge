@@ -10,7 +10,12 @@ export interface DiscardPileProps {
   className?: string;
 }
 
-export function DiscardPile({ label = "Discard", cards, onInspectTop, className }: DiscardPileProps) {
+export function DiscardPile({
+  label = "Discard",
+  cards,
+  onInspectTop,
+  className,
+}: DiscardPileProps) {
   const top = cards.at(-1) ?? null;
   return (
     <button

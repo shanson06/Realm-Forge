@@ -139,7 +139,12 @@ export const CORE_LESSONS: readonly TutorialLesson[] = [
         target: "charge",
         apply: (b) =>
           log(
-            { ...b, energyTotal: b.energyTotal + 1, faceUp: b.energyTotal + 1, hand: [...b.hand, LENS_SPRITE] },
+            {
+              ...b,
+              energyTotal: b.energyTotal + 1,
+              faceUp: b.energyTotal + 1,
+              hand: [...b.hand, LENS_SPRITE],
+            },
             "Ready and Charge: +1 permanent crystal, all crystals face-up, drew Lens Sprite.",
           ),
       },
@@ -255,7 +260,8 @@ export const CORE_LESSONS: readonly TutorialLesson[] = [
     }),
     steps: [
       {
-        instruction: "Tower Lookout already holds 2 damage of its 4 DEF. Attack Maskling Sneak with it.",
+        instruction:
+          "Tower Lookout already holds 2 damage of its 4 DEF. Attack Maskling Sneak with it.",
         target: "friendlyUnit",
         requireId: "u1",
         apply: (b) => log(b, "Selected Tower Lookout (2 damage held)."),
@@ -429,7 +435,8 @@ export const MINI_LESSONS: readonly TutorialLesson[] = [
     order: 2,
     title: "Shield Matrix",
     teaches: "Reduce incoming damage as printed.",
-    takeaway: "Shield Matrix reduces each instance of damage, so small hits can be shrugged off entirely.",
+    takeaway:
+      "Shield Matrix reduces each instance of damage, so small hits can be shrugged off entirely.",
     initial: board({ units: [unit("u1", ARCHIVE_GUARDIAN)], enemyUnits: [unit("e1", MASKLING)] }),
     steps: [
       {
@@ -514,7 +521,13 @@ export const MINI_LESSONS: readonly TutorialLesson[] = [
         requireId: HOLOGLASS_SCRIBE,
         apply: (b) =>
           log(
-            { ...b, faceUp: 1, hand: [], playerGate: Math.min(10, b.playerGate + 2), units: [unit("u1", HOLOGLASS_SCRIBE, { ready: false })] },
+            {
+              ...b,
+              faceUp: 1,
+              hand: [],
+              playerGate: Math.min(10, b.playerGate + 2),
+              units: [unit("u1", HOLOGLASS_SCRIBE, { ready: false })],
+            },
             "Restore 2 applied to the Oathguard Gate.",
           ),
       },
@@ -550,10 +563,15 @@ export const MINI_LESSONS: readonly TutorialLesson[] = [
     teaches: "How Oathguard Trials differs from the cooperative raid.",
     takeaway:
       "In Trials you have three unit spaces and one Support space. Crystals only become legal targets after the opposing Gate breaks, and Aegis never shields the Gate.",
-    initial: board({ enemyGate: 4, units: [unit("u1", PRISM_ARCHER)], enemyUnits: [unit("e1", MIRRORMASK)] }),
+    initial: board({
+      enemyGate: 4,
+      units: [unit("u1", PRISM_ARCHER)],
+      enemyUnits: [unit("e1", MIRRORMASK)],
+    }),
     steps: [
       {
-        instruction: "Tap the opposing Gate: it is legal even while an enemy unit stands, because Aegis does not shield Gates.",
+        instruction:
+          "Tap the opposing Gate: it is legal even while an enemy unit stands, because Aegis does not shield Gates.",
         target: "enemyGate",
         apply: (b) => log(b, "The Gate is a legal target while its Ward remains."),
       },
@@ -570,10 +588,14 @@ export const MINI_LESSONS: readonly TutorialLesson[] = [
     initial: board({ energyTotal: 2, faceUp: 2 }),
     steps: [
       {
-        instruction: "Tap a crystal to spend the Reserve token and add a temporary face-up crystal.",
+        instruction:
+          "Tap a crystal to spend the Reserve token and add a temporary face-up crystal.",
         target: "energy",
         apply: (b) =>
-          log({ ...b, faceUp: b.faceUp + 1 }, "Temporary crystal added. It is removed during Pass."),
+          log(
+            { ...b, faceUp: b.faceUp + 1 },
+            "Temporary crystal added. It is removed during Pass.",
+          ),
       },
     ],
   },

@@ -23,28 +23,99 @@ export const Route = createFileRoute("/menu")({
       { title: "Main Menu — Realmforge" },
       {
         name: "description",
-        content: "Choose a Realmforge mode, review your collection, or adjust accessibility settings.",
+        content:
+          "Choose a Realmforge mode, review your collection, or adjust accessibility settings.",
       },
       { property: "og:title", content: "Main Menu — Realmforge" },
       { property: "og:description", content: "Choose a mode, review decks, or adjust settings." },
     ],
   }),
   component: MainMenu,
-  errorComponent: ({ error }) => <p role="alert" className="p-6">{error.message}</p>,
+  errorComponent: ({ error }) => (
+    <p role="alert" className="p-6">
+      {error.message}
+    </p>
+  ),
 });
 
 const ITEMS = [
-  { to: "/modes", label: "Play", detail: "Cooperative raid or Oathguard Trials", icon: Swords, primary: true },
-  { to: "/tutorial", label: "Tutorial", detail: "Eleven guided lessons plus keyword mini-lessons", icon: GraduationCap, primary: true },
-  { to: "/learn", label: "Learn to Play", detail: "QuickPlay turn structure in four steps", icon: BookOpen, primary: false },
-  { to: "/collection", label: "Collection", detail: "Every card from the source databases", icon: Library, primary: false },
-  { to: "/decks", label: "Decks", detail: "Inspect the six QuickPlay decks", icon: Shield, primary: false },
-  { to: "/profile", label: "Profile", detail: "Local progress and match history", icon: UserRound, primary: false },
-  { to: "/achievements", label: "Achievements", detail: "Cosmetic-only rewards for playing", icon: Medal, primary: false },
-  { to: "/statistics", label: "Statistics", detail: "Results, mastery, and boss victories", icon: BarChart3, primary: false },
-  { to: "/data", label: "Data Management", detail: "Export, import, or clear local data", icon: Database, primary: false },
-  { to: "/settings", label: "Settings", detail: "Motion, sound, and accessibility", icon: SettingsIcon, primary: false },
-  { to: "/dev/content-audit", label: "Content Audit", detail: "Development data verification", icon: Wrench, primary: false },
+  {
+    to: "/modes",
+    label: "Play",
+    detail: "Cooperative raid or Oathguard Trials",
+    icon: Swords,
+    primary: true,
+  },
+  {
+    to: "/tutorial",
+    label: "Tutorial",
+    detail: "Eleven guided lessons plus keyword mini-lessons",
+    icon: GraduationCap,
+    primary: true,
+  },
+  {
+    to: "/learn",
+    label: "Learn to Play",
+    detail: "QuickPlay turn structure in four steps",
+    icon: BookOpen,
+    primary: false,
+  },
+  {
+    to: "/collection",
+    label: "Collection",
+    detail: "Every card from the source databases",
+    icon: Library,
+    primary: false,
+  },
+  {
+    to: "/decks",
+    label: "Decks",
+    detail: "Inspect the six QuickPlay decks",
+    icon: Shield,
+    primary: false,
+  },
+  {
+    to: "/profile",
+    label: "Profile",
+    detail: "Local progress and match history",
+    icon: UserRound,
+    primary: false,
+  },
+  {
+    to: "/achievements",
+    label: "Achievements",
+    detail: "Cosmetic-only rewards for playing",
+    icon: Medal,
+    primary: false,
+  },
+  {
+    to: "/statistics",
+    label: "Statistics",
+    detail: "Results, mastery, and boss victories",
+    icon: BarChart3,
+    primary: false,
+  },
+  {
+    to: "/data",
+    label: "Data Management",
+    detail: "Export, import, or clear local data",
+    icon: Database,
+    primary: false,
+  },
+  {
+    to: "/settings",
+    label: "Settings",
+    detail: "Motion, sound, and accessibility",
+    icon: SettingsIcon,
+    primary: false,
+  },
+  {
+    to: "/dev/content-audit",
+    label: "Content Audit",
+    detail: "Development data verification",
+    icon: Wrench,
+    primary: false,
+  },
 ] as const;
 
 function MainMenu() {

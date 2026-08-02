@@ -49,8 +49,7 @@ export function TrialsPromptPanel({
     );
   }
 
-  const ids =
-    prompt.kind === "foresight" ? prompt.revealedIds : prompt.legalTargetIds;
+  const ids = prompt.kind === "foresight" ? prompt.revealedIds : prompt.legalTargetIds;
 
   return (
     <section

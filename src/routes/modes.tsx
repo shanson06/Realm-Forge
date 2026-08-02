@@ -20,7 +20,11 @@ export const Route = createFileRoute("/modes")({
     ],
   }),
   component: ModeSelect,
-  errorComponent: ({ error }) => <p role="alert" className="p-6">{error.message}</p>,
+  errorComponent: ({ error }) => (
+    <p role="alert" className="p-6">
+      {error.message}
+    </p>
+  ),
 });
 
 function ModeSelect() {
@@ -57,8 +61,8 @@ function ModeSelect() {
           </Badge>
           <h2 className="mt-3 font-display text-xl">Oathguard Trials</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Face another Order locally or a computer-controlled Oathguard. Three unit spaces and
-            one Support space per side.
+            Face another Order locally or a computer-controlled Oathguard. Three unit spaces and one
+            Support space per side.
           </p>
           <ul className="mt-4 space-y-1 text-xs text-muted-foreground">
             <li>First player skips the first Draw</li>

@@ -83,7 +83,8 @@ function TrialsSetup() {
       deckId: deckTwo,
       controller: opponent,
       difficulty: opponent === "ai" ? difficulty : null,
-      displayName: opponent === "ai" ? `Computer · ${TRIALS_DIFFICULTIES[difficulty].label}` : "Player 2",
+      displayName:
+        opponent === "ai" ? `Computer · ${TRIALS_DIFFICULTIES[difficulty].label}` : "Player 2",
     },
   ];
   const setupError = validateTrialsSetup(seats);

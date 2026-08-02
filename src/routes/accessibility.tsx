@@ -14,11 +14,18 @@ export const Route = createFileRoute("/accessibility")({
           "Realmforge accessibility options: reduced motion, high contrast, larger text, and non-colour state indicators.",
       },
       { property: "og:title", content: "Accessibility — Realmforge" },
-      { property: "og:description", content: "Reduced motion, contrast, text size, and indicators." },
+      {
+        property: "og:description",
+        content: "Reduced motion, contrast, text size, and indicators.",
+      },
     ],
   }),
   component: AccessibilityScreen,
-  errorComponent: ({ error }) => <p role="alert" className="p-6">{error.message}</p>,
+  errorComponent: ({ error }) => (
+    <p role="alert" className="p-6">
+      {error.message}
+    </p>
+  ),
 });
 
 function AccessibilityScreen() {
@@ -81,11 +88,21 @@ function AccessibilityScreen() {
           Always on
         </h2>
         <ul className="list-disc space-y-1 pl-5">
-          <li>Every drag has a tap alternative: use the Play button on a card, or tap an attacker and then a highlighted target.</li>
-          <li>Illegal actions stay visible, dimmed, and explain the reason instead of disappearing.</li>
-          <li>Card, stat, target, and match-state controls carry descriptive labels for screen readers.</li>
+          <li>
+            Every drag has a tap alternative: use the Play button on a card, or tap an attacker and
+            then a highlighted target.
+          </li>
+          <li>
+            Illegal actions stay visible, dimmed, and explain the reason instead of disappearing.
+          </li>
+          <li>
+            Card, stat, target, and match-state controls carry descriptive labels for screen
+            readers.
+          </li>
           <li>Focus is always visible and follows reading order for keyboard and switch access.</li>
-          <li>State is never carried by colour alone — icons, symbols, and text back every indicator.</li>
+          <li>
+            State is never carried by colour alone — icons, symbols, and text back every indicator.
+          </li>
         </ul>
       </div>
     </RealmShell>

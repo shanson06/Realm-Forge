@@ -120,7 +120,11 @@ export function canPlayCard(
 
   if (isOneShotCard(card)) {
     const targeting = getTrialsEffect(card.id)?.targeting;
-    if (targeting && !targeting.optional && targeting.candidates(state, seatId, instanceId).length === 0) {
+    if (
+      targeting &&
+      !targeting.optional &&
+      targeting.candidates(state, seatId, instanceId).length === 0
+    ) {
       return illegal("illegal-target", `${card.name} has no legal target right now.`);
     }
     return LEGAL;
@@ -217,7 +221,10 @@ export function canEndTurn(state: TrialsMatchState): TrialsLegality {
   return LEGAL;
 }
 
-export function canBeginStep(state: TrialsMatchState, step: TrialsMatchState["step"]): TrialsLegality {
+export function canBeginStep(
+  state: TrialsMatchState,
+  step: TrialsMatchState["step"],
+): TrialsLegality {
   const blocked = baseChecks(state);
   if (blocked) return blocked;
   if (step === "battle" && state.step === "play") return LEGAL;
@@ -246,13 +253,9 @@ export function checkTrialsAction(state: TrialsMatchState, action: TrialsAction)
         ? LEGAL
         : illegal("awaiting-choice", "That choice is no longer open.");
     case "cancelPending":
-      return state.prompt
-        ? LEGAL
-        : illegal("awaiting-choice", "There is nothing to cancel.");
+      return state.prompt ? LEGAL : illegal("awaiting-choice", "There is nothing to cancel.");
     case "acknowledgeHandoff":
-      return state.handoffPending
-        ? LEGAL
-        : illegal("wrong-step", "No handoff is waiting.");
+      return state.handoffPending ? LEGAL : illegal("wrong-step", "No handoff is waiting.");
     case "surrender":
       return state.result ? illegal("match-over", "This match has already ended.") : LEGAL;
     default:

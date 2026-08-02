@@ -52,7 +52,11 @@ export const Route = createFileRoute("/collection")({
     ],
   }),
   component: Collection,
-  errorComponent: ({ error }) => <p role="alert" className="p-6">{error.message}</p>,
+  errorComponent: ({ error }) => (
+    <p role="alert" className="p-6">
+      {error.message}
+    </p>
+  ),
 });
 
 /** deckId list each card appears in, from the curated QuickPlay manifests. */
@@ -77,9 +81,7 @@ function Collection() {
       side: uniq(catalog.cards.map((c) => c.side)),
       faction: uniq(catalog.cards.map((c) => c.faction)),
       type: uniq(catalog.cards.map((c) => c.type)),
-      cost: uniq(catalog.cards.map((c) => String(c.cost))).sort(
-        (a, b) => Number(a) - Number(b),
-      ),
+      cost: uniq(catalog.cards.map((c) => String(c.cost))).sort((a, b) => Number(a) - Number(b)),
       keyword: uniq(catalog.cards.flatMap((c) => c.keywords)),
     };
   }, [catalog]);
@@ -122,7 +124,15 @@ function Collection() {
               <Link
                 key={value}
                 to="/collection"
-                search={{ ...search, mode: value, side: "", faction: "", type: "", cost: "", keyword: "" }}
+                search={{
+                  ...search,
+                  mode: value,
+                  side: "",
+                  faction: "",
+                  type: "",
+                  cost: "",
+                  keyword: "",
+                }}
                 data-status={mode === value ? "active" : undefined}
                 className="rounded-full border border-border/70 px-3 py-1 tracking-widest uppercase data-[status=active]:border-oath-gold data-[status=active]:text-oath-gold"
               >
@@ -141,11 +151,36 @@ function Collection() {
       }
     >
       <div className="mb-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-        <Facet label="Side" value={search.side} options={facets.side} onChange={(v) => set({ side: v })} />
-        <Facet label="Faction" value={search.faction} options={facets.faction} onChange={(v) => set({ faction: v })} />
-        <Facet label="Type" value={search.type} options={facets.type} onChange={(v) => set({ type: v })} />
-        <Facet label="Cost" value={search.cost} options={facets.cost} onChange={(v) => set({ cost: v })} />
-        <Facet label="Keyword" value={search.keyword} options={facets.keyword} onChange={(v) => set({ keyword: v })} />
+        <Facet
+          label="Side"
+          value={search.side}
+          options={facets.side}
+          onChange={(v) => set({ side: v })}
+        />
+        <Facet
+          label="Faction"
+          value={search.faction}
+          options={facets.faction}
+          onChange={(v) => set({ faction: v })}
+        />
+        <Facet
+          label="Type"
+          value={search.type}
+          options={facets.type}
+          onChange={(v) => set({ type: v })}
+        />
+        <Facet
+          label="Cost"
+          value={search.cost}
+          options={facets.cost}
+          onChange={(v) => set({ cost: v })}
+        />
+        <Facet
+          label="Keyword"
+          value={search.keyword}
+          options={facets.keyword}
+          onChange={(v) => set({ keyword: v })}
+        />
       </div>
 
       {filtered && (
@@ -190,7 +225,8 @@ function Collection() {
       {inspected && (
         <p className="sr-only" aria-live="polite">
           {inspected.name} is legal in {inspected.mode} play
-          {usage.length > 0 ? `, used in ${usage.join(", ")}` : ", not in a curated QuickPlay deck"}.
+          {usage.length > 0 ? `, used in ${usage.join(", ")}` : ", not in a curated QuickPlay deck"}
+          .
         </p>
       )}
 

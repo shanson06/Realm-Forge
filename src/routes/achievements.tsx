@@ -22,7 +22,11 @@ export const Route = createFileRoute("/achievements")({
     ],
   }),
   component: Achievements,
-  errorComponent: ({ error }) => <p role="alert" className="p-6">{error.message}</p>,
+  errorComponent: ({ error }) => (
+    <p role="alert" className="p-6">
+      {error.message}
+    </p>
+  ),
 });
 
 const CATEGORY_LABEL: Record<string, string> = {
@@ -44,7 +48,11 @@ function Achievements() {
       eyebrow="Progression"
       title="Achievements"
       description="Every reward here is cosmetic. No achievement changes a card, a cost, or a statistic."
-      actions={<Badge variant="secondary">{unlocked}/{states.length} unlocked</Badge>}
+      actions={
+        <Badge variant="secondary">
+          {unlocked}/{states.length} unlocked
+        </Badge>
+      }
     >
       {categories.map((category) => (
         <section key={category} className="mb-8">

@@ -24,13 +24,7 @@ export type EffectOp =
   | { readonly op: "gainTemporaryEnergy"; readonly amount: number };
 
 export type EffectTrigger =
-  | "deploy"
-  | "onAttack"
-  | "onHit"
-  | "onDefeat"
-  | "activated"
-  | "static"
-  | "echo";
+  "deploy" | "onAttack" | "onHit" | "onDefeat" | "activated" | "static" | "echo";
 
 /** Context handed to a typed effect handler. Never contains English rules text. */
 export interface EffectContext {
@@ -45,14 +39,10 @@ export type EffectHandler = (draft: MatchDraft, ctx: EffectContext) => void;
 
 /** Extra attack-time rules a card imposes, evaluated by the engine (never parsed). */
 export type AttackTargetRule =
-  | "lowest-remaining-def-unit"
-  | "lowest-printed-def-unit"
-  | "gate-if-able";
+  "lowest-remaining-def-unit" | "lowest-printed-def-unit" | "gate-if-able";
 
 export type AegisRule =
-  | "ignore-when-target-damaged"
-  | "ignore-first-attack-each-game"
-  | "always-ignore";
+  "ignore-when-target-damaged" | "ignore-first-attack-each-game" | "always-ignore";
 
 /**
  * A continuous ATK modifier contributed by a card in play.

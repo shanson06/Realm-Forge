@@ -40,7 +40,11 @@ export const Route = createFileRoute("/tutorial/$lessonId")({
     };
   },
   component: LessonRunner,
-  errorComponent: ({ error }) => <p role="alert" className="p-6">{error.message}</p>,
+  errorComponent: ({ error }) => (
+    <p role="alert" className="p-6">
+      {error.message}
+    </p>
+  ),
   notFoundComponent: () => <p className="p-6">That tutorial lesson does not exist.</p>,
 });
 
@@ -117,9 +121,7 @@ function LessonRunner() {
             <p className="text-[0.65rem] tracking-widest text-oath-cyan uppercase">
               {finished ? "Lesson complete" : `Step ${stepIndex + 1} of ${lesson.steps.length}`}
             </p>
-            <p className="mt-2 text-sm">
-              {finished ? lesson.takeaway : step?.instruction}
-            </p>
+            <p className="mt-2 text-sm">{finished ? lesson.takeaway : step?.instruction}</p>
             {hint && (
               <p role="alert" className="mt-2 text-sm text-realm-danger">
                 {hint}

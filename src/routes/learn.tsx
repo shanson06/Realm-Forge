@@ -20,7 +20,11 @@ export const Route = createFileRoute("/learn")({
     ],
   }),
   component: LearnToPlay,
-  errorComponent: ({ error }) => <p role="alert" className="p-6">{error.message}</p>,
+  errorComponent: ({ error }) => (
+    <p role="alert" className="p-6">
+      {error.message}
+    </p>
+  ),
 });
 
 const STEPS = [
@@ -28,13 +32,25 @@ const STEPS = [
     name: "Ready and Charge",
     body: "Ready your cards, add one permanent Energy crystal (maximum six), turn every permanent crystal face-up, then draw one card.",
   },
-  { name: "Play", body: "Play up to two cards. Turn face-up crystals face-down to pay their cost. Units enter ready but cannot attack this turn unless they have Surge." },
-  { name: "Battle", body: "Attack with ready units. Defenders do not retaliate. Damage stays on units; discard a unit when damage equals or exceeds its DEF." },
-  { name: "Pass", body: "End your turn and hand play to the next Oathguard or to the Hollow Crown." },
+  {
+    name: "Play",
+    body: "Play up to two cards. Turn face-up crystals face-down to pay their cost. Units enter ready but cannot attack this turn unless they have Surge.",
+  },
+  {
+    name: "Battle",
+    body: "Attack with ready units. Defenders do not retaliate. Damage stays on units; discard a unit when damage equals or exceeds its DEF.",
+  },
+  {
+    name: "Pass",
+    body: "End your turn and hand play to the next Oathguard or to the Hollow Crown.",
+  },
 ] as const;
 
 const KEYWORDS = [
-  { name: "Aegis", body: "A ready Aegis unit protects other units. A used Aegis unit does not guard." },
+  {
+    name: "Aegis",
+    body: "A ready Aegis unit protects other units. A used Aegis unit does not guard.",
+  },
   { name: "Shield Matrix", body: "Reduces incoming damage as printed on the card." },
   { name: "Surge", body: "This unit may attack on the turn it enters play." },
   { name: "Deploy", body: "Triggers once, when the card enters play." },
@@ -52,8 +68,8 @@ function LearnToPlay() {
       <Alert className="mb-6 border-oath-gold/50">
         <AlertTitle>Rules text is pending approval</AlertTitle>
         <AlertDescription>
-          The summaries below restate the locked QuickPlay brief. Detailed per-card walkthroughs
-          are added once the QuickPlay rulebooks are supplied — nothing here is invented from the
+          The summaries below restate the locked QuickPlay brief. Detailed per-card walkthroughs are
+          added once the QuickPlay rulebooks are supplied — nothing here is invented from the
           30-card standard edition.
         </AlertDescription>
       </Alert>
@@ -90,8 +106,8 @@ function LearnToPlay() {
           <article className="rounded-xl border border-hollow-violet/40 bg-hollow-blackglass/70 p-4">
             <h3 className="font-display">Oathguard Trials</h3>
             <p className="mt-2 text-sm text-muted-foreground">
-              Break the opposing Gate and reduce its six crystals to zero, or win when your
-              opponent must draw from an empty deck.
+              Break the opposing Gate and reduce its six crystals to zero, or win when your opponent
+              must draw from an empty deck.
             </p>
           </article>
         </div>

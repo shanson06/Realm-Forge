@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import { Activity } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { competitiveCatalog, cooperativeCatalog } from "@/game-data/load";
 import { totalRegisteredEffectCount } from "@/game-engine/effect-status";
 import { QUICKPLAY_DECK_MANIFESTS } from "@/game-data/quickplay";
@@ -51,7 +47,10 @@ export function DiagnosticsPanel() {
         <Row label="Trials records" value={String(competitiveCatalog.cards.length)} />
         <Row label="Validation errors" value={String(errors)} />
         <Row label="Registered effects" value={String(totalRegisteredEffectCount())} />
-        <Row label="Decks awaiting source" value={`${pendingDecks}/${QUICKPLAY_DECK_MANIFESTS.length}`} />
+        <Row
+          label="Decks awaiting source"
+          value={`${pendingDecks}/${QUICKPLAY_DECK_MANIFESTS.length}`}
+        />
         <Row label="IndexedDB" value={storage} />
       </CollapsibleContent>
     </Collapsible>

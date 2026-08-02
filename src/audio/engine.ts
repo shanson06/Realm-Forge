@@ -43,7 +43,9 @@ function categoryLevel(category: AudioCategory): number {
 function ensureContext(): AudioContext | null {
   if (typeof window === "undefined") return null;
   if (context) return context;
-  const Ctor = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+  const Ctor =
+    window.AudioContext ??
+    (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
   if (!Ctor) return null;
 
   context = new Ctor();
@@ -99,7 +101,10 @@ function scheduleVoice(ctx: AudioContext, destination: GainNode, voice: CueVoice
   const end = start + voice.duration;
   const gain = ctx.createGain();
   gain.gain.setValueAtTime(0.0001, start);
-  gain.gain.exponentialRampToValueAtTime(Math.max(voice.gain, 0.0002), start + Math.min(0.03, voice.duration / 3));
+  gain.gain.exponentialRampToValueAtTime(
+    Math.max(voice.gain, 0.0002),
+    start + Math.min(0.03, voice.duration / 3),
+  );
   gain.gain.exponentialRampToValueAtTime(0.0001, end);
 
   let tail: AudioNode = gain;

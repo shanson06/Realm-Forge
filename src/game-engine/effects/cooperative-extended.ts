@@ -36,9 +36,7 @@ function nameOfDefinition(draft: MatchDraft, instanceId: string): string {
 }
 
 function topEncounterNames(draft: MatchDraft, count: number): string[] {
-  return draft.players[HOLLOW].deck
-    .slice(0, count)
-    .map((id) => nameOfDefinition(draft, id));
+  return draft.players[HOLLOW].deck.slice(0, count).map((id) => nameOfDefinition(draft, id));
 }
 
 function healDamage(draft: MatchDraft, instanceId: string, amount: number): number {
@@ -139,7 +137,10 @@ const TRUTHWARDENS: EffectImplementation[] = [
       );
       for (const target of targets) {
         if (remaining <= 0) break;
-        const need = Math.max(1, Math.min(remaining, remainingDef(draft as never, target.instanceId)));
+        const need = Math.max(
+          1,
+          Math.min(remaining, remainingDef(draft as never, target.instanceId)),
+        );
         damageUnit(draft, target.instanceId, need);
         remaining -= need;
       }
@@ -160,12 +161,11 @@ const TRUTHWARDENS: EffectImplementation[] = [
     handler: (draft) => {
       const deck = draft.players[HOLLOW].deck;
       const revealed = deck.slice(0, 3);
-      const discardable = revealed.find(
-        (id) => (definitionOf(draft as never, id).cost ?? 0) <= 4,
-      );
+      const discardable = revealed.find((id) => (definitionOf(draft as never, id).cost ?? 0) <= 4);
       log(draft, "Marshal Verin reveals the top three encounter cards.", {
         playerId: OATHGUARD,
-        detail: revealed.map((id) => nameOfDefinition(draft, id)).join(" → ") || "Encounter deck empty.",
+        detail:
+          revealed.map((id) => nameOfDefinition(draft, id)).join(" → ") || "Encounter deck empty.",
       });
       if (!discardable) return;
       deck.splice(deck.indexOf(discardable), 1);
@@ -194,14 +194,19 @@ const HONORBOUND: EffectImplementation[] = [
       const damaged = mostDamagedFirst(draft, OATHGUARD).filter(
         (u) => draft.board.instances[u.instanceId].damage > 0,
       );
-      const totalDamage = damaged.reduce((n, u) => n + draft.board.instances[u.instanceId].damage, 0);
+      const totalDamage = damaged.reduce(
+        (n, u) => n + draft.board.instances[u.instanceId].damage,
+        0,
+      );
       if (totalDamage >= 3) {
         let remaining = 3;
         for (const unit of damaged) {
           if (remaining <= 0) break;
           remaining -= healDamage(draft, unit.instanceId, remaining);
         }
-        log(draft, "Repair the Breach removes 3 damage from Oathguard units.", { playerId: OATHGUARD });
+        log(draft, "Repair the Breach removes 3 damage from Oathguard units.", {
+          playerId: OATHGUARD,
+        });
         return;
       }
       restoreWard(draft, OATHGUARD, 5);
@@ -241,12 +246,17 @@ const HONORBOUND: EffectImplementation[] = [
         const inst = draft.board.instances[unit.instanceId];
         if (inst.damage > 0) healDamage(draft, unit.instanceId, inst.damage);
       });
-      const readyTarget = chosen.find((u) => draft.board.instances[u.instanceId].exhausted) ?? chosen[0];
+      const readyTarget =
+        chosen.find((u) => draft.board.instances[u.instanceId].exhausted) ?? chosen[0];
       if (readyTarget) {
         draft.board.instances[readyTarget.instanceId].exhausted = false;
-        log(draft, `Oath Renewed heals and readies ${nameOfDefinition(draft, readyTarget.instanceId)}.`, {
-          playerId: OATHGUARD,
-        });
+        log(
+          draft,
+          `Oath Renewed heals and readies ${nameOfDefinition(draft, readyTarget.instanceId)}.`,
+          {
+            playerId: OATHGUARD,
+          },
+        );
       }
     },
     ambiguity: AUTO_CHOICE,
@@ -292,7 +302,8 @@ const DAWNWATCH: EffectImplementation[] = [
     trigger: "static",
     roundStartModifier: {
       label: "Shared Momentum",
-      description: "Once each round, another Oathguard unit gains +1 ATK after a Surge unit attacks.",
+      description:
+        "Once each round, another Oathguard unit gains +1 ATK after a Surge unit attacks.",
       source: "Shared Momentum",
       owner: OATHGUARD,
       duration: "round",
@@ -331,9 +342,13 @@ const DAWNWATCH: EffectImplementation[] = [
       if (!donor) return;
       const moved = healDamage(draft, donor.instanceId, 2);
       if (moved <= 0) return;
-      log(draft, `Aurora Lifters take ${moved} damage from ${nameOfDefinition(draft, donor.instanceId)}.`, {
-        playerId: OATHGUARD,
-      });
+      log(
+        draft,
+        `Aurora Lifters take ${moved} damage from ${nameOfDefinition(draft, donor.instanceId)}.`,
+        {
+          playerId: OATHGUARD,
+        },
+      );
       damageUnit(draft, ctx.selfId, moved);
     },
     ambiguity: AUTO_CHOICE,
@@ -351,7 +366,9 @@ const DAWNWATCH: EffectImplementation[] = [
           draft.board.instances[unit.instanceId].temporaryAtk += 2;
           cue(draft, "effect", unit.instanceId);
         });
-      log(draft, "Race the Darkness grants Surge and +2 ATK to two units.", { playerId: OATHGUARD });
+      log(draft, "Race the Darkness grants Surge and +2 ATK to two units.", {
+        playerId: OATHGUARD,
+      });
     },
     ambiguity: AUTO_CHOICE,
   },
@@ -398,7 +415,8 @@ const VEILBORN: EffectImplementation[] = [
   {
     cardId: "RF-HC-VEI-011",
     mode: GameMode.Cooperative,
-    sourceText: "Reveal the next encounter card. If it is a Minion, deploy it with +1 ATK this round.",
+    sourceText:
+      "Reveal the next encounter card. If it is a Minion, deploy it with +1 ATK this round.",
     trigger: "deploy",
     handler: (draft) => {
       const nextId = draft.players[HOLLOW].deck[0];
@@ -430,7 +448,9 @@ const VEILBORN: EffectImplementation[] = [
     handler: (draft) => {
       const supportId = draft.players[OATHGUARD].supportSlot;
       if (!supportId) return;
-      log(draft, `Veyr's Herald discards ${nameOfDefinition(draft, supportId)}.`, { playerId: HOLLOW });
+      log(draft, `Veyr's Herald discards ${nameOfDefinition(draft, supportId)}.`, {
+        playerId: HOLLOW,
+      });
       moveToDiscard(draft, supportId);
     },
     ambiguity:
@@ -454,7 +474,9 @@ const VEILBORN: EffectImplementation[] = [
         draft.board.instances[id].slotIndex = index;
       });
       for (let i = present.length; i < slots.length; i += 1) slots[i] = null;
-      log(draft, "Hall of Shifting Doors reorders the Hollow Crown line by ATK.", { playerId: HOLLOW });
+      log(draft, "Hall of Shifting Doors reorders the Hollow Crown line by ATK.", {
+        playerId: HOLLOW,
+      });
     },
   },
   {
@@ -480,7 +502,8 @@ const VEILBORN: EffectImplementation[] = [
       const targets = [...units(draft, OATHGUARD)]
         .sort(
           (a, b) =>
-            remainingDef(draft as never, a.instanceId) - remainingDef(draft as never, b.instanceId) ||
+            remainingDef(draft as never, a.instanceId) -
+              remainingDef(draft as never, b.instanceId) ||
             a.instanceId.localeCompare(b.instanceId),
         )
         .slice(0, 2);
@@ -569,7 +592,9 @@ const WHISPER_COURT: EffectImplementation[] = [
         inst.roundAtk = 0;
         inst.nextAttackAtk = 0;
       });
-      log(draft, "Malreth's Envoy strips every temporary Oathguard ATK bonus.", { playerId: HOLLOW });
+      log(draft, "Malreth's Envoy strips every temporary Oathguard ATK bonus.", {
+        playerId: HOLLOW,
+      });
     },
   },
   {
@@ -615,7 +640,9 @@ const WHISPER_COURT: EffectImplementation[] = [
       Object.values(draft.seats).forEach((seat) => {
         seat.energyDrainNextCharge += 2;
       });
-      log(draft, "Oravax drains 2 Energy from each Oathguard on their next turn.", { playerId: HOLLOW });
+      log(draft, "Oravax drains 2 Energy from each Oathguard on their next turn.", {
+        playerId: HOLLOW,
+      });
     },
   },
 ];
@@ -632,7 +659,8 @@ const BREAKERS: EffectImplementation[] = [
       const targets = [...units(draft, OATHGUARD)]
         .sort(
           (a, b) =>
-            remainingDef(draft as never, a.instanceId) - remainingDef(draft as never, b.instanceId) ||
+            remainingDef(draft as never, a.instanceId) -
+              remainingDef(draft as never, b.instanceId) ||
             a.instanceId.localeCompare(b.instanceId),
         )
         .slice(0, 2);

@@ -10,9 +10,7 @@
     "cost": 1,
     "atk": 1,
     "def": 2,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: Look at the top encounter card. You may leave it or place it on the bottom.",
     "flavor_text": "",
     "art_brief": "Beacon Initiate: Truthwardens Ally shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -50,9 +48,7 @@
     "cost": 2,
     "atk": 1,
     "def": 3,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: Draw 1 card, then discard 1 card.",
     "flavor_text": "",
     "art_brief": "Hologlass Scribe: Truthwardens Ally shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -147,10 +143,7 @@
     "cost": 4,
     "atk": 2,
     "def": 5,
-    "keywords": [
-      "Aegis",
-      "Deploy"
-    ],
+    "keywords": ["Aegis", "Deploy"],
     "rules_text": "Aegis. Deploy: Restore 1 Ward to the Oathguard Gate.",
     "flavor_text": "",
     "art_brief": "Beacon Warder: Truthwardens Ally shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -169,9 +162,7 @@
     "cost": 4,
     "atk": null,
     "def": null,
-    "keywords": [
-      "Scan"
-    ],
+    "keywords": ["Scan"],
     "rules_text": "Scan 2. Once each round after you Scan, one Oathguard unit gets +1 ATK for its next attack.",
     "flavor_text": "",
     "art_brief": "Lantern Array: Truthwardens Item shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -190,9 +181,7 @@
     "cost": 5,
     "atk": 4,
     "def": 5,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: Deal 1 damage to an enemy that entered play this round.",
     "flavor_text": "",
     "art_brief": "Verdict Seeker: Truthwardens Ally shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -230,9 +219,7 @@
     "cost": 6,
     "atk": 5,
     "def": 6,
-    "keywords": [
-      "Surge"
-    ],
+    "keywords": ["Surge"],
     "rules_text": "Surge. When this attacks a Gate, Restore 1 Ward to the Oathguard Gate.",
     "flavor_text": "",
     "art_brief": "Mirror-Sky Gryphon: Truthwardens Creature shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -251,9 +238,7 @@
     "cost": 7,
     "atk": 4,
     "def": 8,
-    "keywords": [
-      "Aegis"
-    ],
+    "keywords": ["Aegis"],
     "rules_text": "Aegis. When this is hit, look at the top encounter card.",
     "flavor_text": "",
     "art_brief": "Archive Guardian: Truthwardens Ally shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -272,9 +257,7 @@
     "cost": 8,
     "atk": null,
     "def": null,
-    "keywords": [
-      "Scan"
-    ],
+    "keywords": ["Scan"],
     "rules_text": "Scan 3. Draw 1 card. The team may reorder the scanned cards.",
     "flavor_text": "",
     "art_brief": "Beacon of Open Sight: Truthwardens Item shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -331,9 +314,7 @@
     "cost": 10,
     "atk": 8,
     "def": 10,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: Reveal the top three encounter cards. Discard one with Threat 4 or less, then reorder the rest.",
     "flavor_text": "",
     "art_brief": "Marshal Verin, Light of Discernment: Truthwardens Hero shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -352,9 +333,7 @@
     "cost": 1,
     "atk": 1,
     "def": 2,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: Restore 1 damage from a unit.",
     "flavor_text": "",
     "art_brief": "Oath Page: Honorbound Ally shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -373,9 +352,7 @@
     "cost": 1,
     "atk": 1,
     "def": 2,
-    "keywords": [
-      "Shield Matrix"
-    ],
+    "keywords": ["Shield Matrix"],
     "rules_text": "Shield Matrix.",
     "flavor_text": "",
     "art_brief": "Gate Pup: Honorbound Creature shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -394,9 +371,7 @@
     "cost": 2,
     "atk": 0,
     "def": 5,
-    "keywords": [
-      "Aegis"
-    ],
+    "keywords": ["Aegis"],
     "rules_text": "Aegis.",
     "flavor_text": "",
     "art_brief": "Banner Bearer: Honorbound Ally shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -415,9 +390,7 @@
     "cost": 2,
     "atk": null,
     "def": null,
-    "keywords": [
-      "Restore"
-    ],
+    "keywords": ["Restore"],
     "rules_text": "Restore 3 Ward to the Oathguard Gate.",
     "flavor_text": "",
     "art_brief": "Patch the Ward: Honorbound Spell shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -436,9 +409,7 @@
     "cost": 3,
     "atk": 2,
     "def": 5,
-    "keywords": [
-      "Aegis"
-    ],
+    "keywords": ["Aegis"],
     "rules_text": "Aegis.",
     "flavor_text": "",
     "art_brief": "Shieldhand Recruit: Honorbound Ally shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -476,10 +447,7 @@
     "cost": 4,
     "atk": 2,
     "def": 6,
-    "keywords": [
-      "Aegis",
-      "Shield Matrix"
-    ],
+    "keywords": ["Aegis", "Shield Matrix"],
     "rules_text": "Aegis. Shield Matrix.",
     "flavor_text": "",
     "art_brief": "Goldwall Defender: Honorbound Ally shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -517,9 +485,7 @@
     "cost": 4,
     "atk": 3,
     "def": 5,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: Restore 1 Ward. If a unit has Shield Matrix, Restore 2 Ward instead.",
     "flavor_text": "",
     "art_brief": "Brightarm Smith: Honorbound Ally shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -538,9 +504,7 @@
     "cost": 5,
     "atk": 3,
     "def": 7,
-    "keywords": [
-      "Aegis"
-    ],
+    "keywords": ["Aegis"],
     "rules_text": "Aegis.",
     "flavor_text": "",
     "art_brief": "Vowsteel Sentinel: Honorbound Ally shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -559,9 +523,7 @@
     "cost": 5,
     "atk": null,
     "def": null,
-    "keywords": [
-      "Restore"
-    ],
+    "keywords": ["Restore"],
     "rules_text": "Choose one: Restore 5 Ward, or remove 3 damage divided among units.",
     "flavor_text": "",
     "art_brief": "Repair the Breach: Honorbound Event shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -580,9 +542,7 @@
     "cost": 6,
     "atk": 4,
     "def": 7,
-    "keywords": [
-      "Shield Matrix"
-    ],
+    "keywords": ["Shield Matrix"],
     "rules_text": "Shield Matrix. Once each round, this may take damage assigned to another unit.",
     "flavor_text": "",
     "art_brief": "Aegis Lion: Honorbound Creature shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -601,9 +561,7 @@
     "cost": 7,
     "atk": 4,
     "def": 10,
-    "keywords": [
-      "Aegis"
-    ],
+    "keywords": ["Aegis"],
     "rules_text": "Aegis.",
     "flavor_text": "",
     "art_brief": "Gate-Root Colossus: Honorbound Creature shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -622,10 +580,7 @@
     "cost": 8,
     "atk": 5,
     "def": 10,
-    "keywords": [
-      "Aegis",
-      "Shield Matrix"
-    ],
+    "keywords": ["Aegis", "Shield Matrix"],
     "rules_text": "Aegis. Shield Matrix.",
     "flavor_text": "",
     "art_brief": "Captain's Guard: Honorbound Ally shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -644,9 +599,7 @@
     "cost": 8,
     "atk": null,
     "def": null,
-    "keywords": [
-      "Restore"
-    ],
+    "keywords": ["Restore"],
     "rules_text": "Remove all damage from up to two units. Ready one of them.",
     "flavor_text": "",
     "art_brief": "Oath Renewed: Honorbound Event shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -665,9 +618,7 @@
     "cost": 9,
     "atk": null,
     "def": null,
-    "keywords": [
-      "Restore"
-    ],
+    "keywords": ["Restore"],
     "rules_text": "Prevent all Gate damage this Hollow Crown turn. Restore 6 Ward.",
     "flavor_text": "",
     "art_brief": "Wall of Living Light: Honorbound Spell shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -686,10 +637,7 @@
     "cost": 10,
     "atk": 6,
     "def": 13,
-    "keywords": [
-      "Aegis",
-      "Shield Matrix"
-    ],
+    "keywords": ["Aegis", "Shield Matrix"],
     "rules_text": "Aegis. Shield Matrix. Other Oathguard units take 1 less damage while Soren is ready.",
     "flavor_text": "",
     "art_brief": "Captain Soren, Shield of the Oath: Honorbound Hero shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -708,9 +656,7 @@
     "cost": 1,
     "atk": 2,
     "def": 1,
-    "keywords": [
-      "Surge"
-    ],
+    "keywords": ["Surge"],
     "rules_text": "Surge.",
     "flavor_text": "",
     "art_brief": "Sunrunner Cadet: Dawnwatch Ally shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -729,9 +675,7 @@
     "cost": 1,
     "atk": 1,
     "def": 2,
-    "keywords": [
-      "Surge"
-    ],
+    "keywords": ["Surge"],
     "rules_text": "Surge.",
     "flavor_text": "",
     "art_brief": "Sparkwing Finch: Dawnwatch Creature shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -750,9 +694,7 @@
     "cost": 2,
     "atk": 2,
     "def": 3,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: Another unit gets +1 ATK this turn.",
     "flavor_text": "",
     "art_brief": "Dawn Courier: Dawnwatch Ally shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -790,9 +732,7 @@
     "cost": 3,
     "atk": 3,
     "def": 3,
-    "keywords": [
-      "Surge"
-    ],
+    "keywords": ["Surge"],
     "rules_text": "Surge.",
     "flavor_text": "",
     "art_brief": "Glider Scout: Dawnwatch Ally shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -811,9 +751,7 @@
     "cost": 3,
     "atk": null,
     "def": null,
-    "keywords": [
-      "Sync"
-    ],
+    "keywords": ["Sync"],
     "rules_text": "Sync: If you control two ready units, draw 1 card.",
     "flavor_text": "",
     "art_brief": "Twin Beacon Signal: Dawnwatch Spell shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -832,10 +770,7 @@
     "cost": 4,
     "atk": 2,
     "def": 6,
-    "keywords": [
-      "Deploy",
-      "Restore"
-    ],
+    "keywords": ["Deploy", "Restore"],
     "rules_text": "Deploy: Restore 2 damage from a unit.",
     "flavor_text": "",
     "art_brief": "First-Light Medic: Dawnwatch Ally shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -854,9 +789,7 @@
     "cost": 4,
     "atk": 4,
     "def": 4,
-    "keywords": [
-      "Surge"
-    ],
+    "keywords": ["Surge"],
     "rules_text": "Surge.",
     "flavor_text": "",
     "art_brief": "Skyline Skirmisher: Dawnwatch Ally shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -894,9 +827,7 @@
     "cost": 5,
     "atk": 4,
     "def": 6,
-    "keywords": [
-      "Surge"
-    ],
+    "keywords": ["Surge"],
     "rules_text": "Surge.",
     "flavor_text": "",
     "art_brief": "Dawnback Stag: Dawnwatch Creature shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -934,9 +865,7 @@
     "cost": 6,
     "atk": 5,
     "def": 6,
-    "keywords": [
-      "Surge"
-    ],
+    "keywords": ["Surge"],
     "rules_text": "Surge.",
     "flavor_text": "",
     "art_brief": "Beacon-Rail Charger: Dawnwatch Creature shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -955,9 +884,7 @@
     "cost": 7,
     "atk": 5,
     "def": 8,
-    "keywords": [
-      "Sync"
-    ],
+    "keywords": ["Sync"],
     "rules_text": "Sync: If another unit attacked this turn, this gets +2 ATK.",
     "flavor_text": "",
     "art_brief": "Wingbanner Captain: Dawnwatch Ally shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -976,10 +903,7 @@
     "cost": 8,
     "atk": 6,
     "def": 8,
-    "keywords": [
-      "Surge",
-      "Deploy"
-    ],
+    "keywords": ["Surge", "Deploy"],
     "rules_text": "Surge. Deploy: Move up to 2 damage from a unit to this.",
     "flavor_text": "",
     "art_brief": "Aurora Lifters: Dawnwatch Creature shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -1017,9 +941,7 @@
     "cost": 9,
     "atk": null,
     "def": null,
-    "keywords": [
-      "Response"
-    ],
+    "keywords": ["Response"],
     "rules_text": "Response: After the Attack step, ready each Oathguard unit. Each may attack a Gate or Final Boss once.",
     "flavor_text": "",
     "art_brief": "All Beacons Forward: Dawnwatch Event shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -1038,9 +960,7 @@
     "cost": 10,
     "atk": 9,
     "def": 9,
-    "keywords": [
-      "Surge"
-    ],
+    "keywords": ["Surge"],
     "rules_text": "Surge. After your second unit attacks each turn, give one unit +2 ATK.",
     "flavor_text": "",
     "art_brief": "Aren Cross, First Light Captain: Dawnwatch Hero shown in hopeful blue-gold relic-tech style with a readable heroic silhouette.",
@@ -1059,9 +979,7 @@
     "cost": 1,
     "atk": 2,
     "def": 1,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: Deal 1 damage to the lowest-DEF Oathguard unit.",
     "flavor_text": "",
     "art_brief": "Maskling Sneak: Veilborn Minion shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1099,9 +1017,7 @@
     "cost": 2,
     "atk": 3,
     "def": 2,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: If no Aegis unit is in play, deal 1 Ward damage to the Oathguard Gate.",
     "flavor_text": "",
     "art_brief": "Veil Runner: Veilborn Minion shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1139,9 +1055,7 @@
     "cost": 3,
     "atk": 3,
     "def": 4,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: Move this to the leftmost enemy position.",
     "flavor_text": "",
     "art_brief": "Mirrormask Agent: Veilborn Minion shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1217,9 +1131,7 @@
     "cost": 4,
     "atk": 3,
     "def": 5,
-    "keywords": [
-      "Echo"
-    ],
+    "keywords": ["Echo"],
     "rules_text": "Echo: Deal 1 Ward damage to the Oathguard Gate.",
     "flavor_text": "",
     "art_brief": "Moonroad Lurker: Veilborn Creature shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1238,9 +1150,7 @@
     "cost": 5,
     "atk": 5,
     "def": 4,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: Use one ready non-Aegis Oathguard unit.",
     "flavor_text": "",
     "art_brief": "Silver-Thread Trickster: Veilborn Minion shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1316,9 +1226,7 @@
     "cost": 8,
     "atk": 7,
     "def": 8,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: Discard the lowest-cost Oathguard Mod in play.",
     "flavor_text": "",
     "art_brief": "Veyr's Herald: Veilborn Enemy Hero shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1375,9 +1283,7 @@
     "cost": 10,
     "atk": 9,
     "def": 10,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: Create two Decoy Minions with 1 ATK and 1 DEF.",
     "flavor_text": "",
     "art_brief": "Nhal, Mask of Many Roads: Veilborn Enemy Hero shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1396,9 +1302,7 @@
     "cost": 1,
     "atk": 1,
     "def": 2,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: Highest-ATK Oathguard unit gets -1 ATK this turn.",
     "flavor_text": "",
     "art_brief": "Doubt Whisper: Whisper Court Minion shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1417,9 +1321,7 @@
     "cost": 1,
     "atk": 2,
     "def": 1,
-    "keywords": [
-      "Echo"
-    ],
+    "keywords": ["Echo"],
     "rules_text": "Echo: Active player discards 1 card if they have 6 or more cards.",
     "flavor_text": "",
     "art_brief": "Cinder Quill: Whisper Court Minion shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1438,9 +1340,7 @@
     "cost": 2,
     "atk": 2,
     "def": 3,
-    "keywords": [
-      "Siphon"
-    ],
+    "keywords": ["Siphon"],
     "rules_text": "Deploy: Siphon 1 from the active player this turn.",
     "flavor_text": "",
     "art_brief": "Court Page: Whisper Court Minion shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1478,9 +1378,7 @@
     "cost": 3,
     "atk": 2,
     "def": 5,
-    "keywords": [
-      "Static"
-    ],
+    "keywords": ["Static"],
     "rules_text": "Static 1 to the highest-ATK Oathguard unit this round.",
     "flavor_text": "",
     "art_brief": "Grayglass Advocate: Whisper Court Enemy Hero shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1556,9 +1454,7 @@
     "cost": 4,
     "atk": 3,
     "def": 5,
-    "keywords": [
-      "Echo"
-    ],
+    "keywords": ["Echo"],
     "rules_text": "Echo: Highest-ATK Oathguard unit gets -1 ATK this round.",
     "flavor_text": "",
     "art_brief": "Hushwing Shade: Whisper Court Creature shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1577,9 +1473,7 @@
     "cost": 5,
     "atk": 4,
     "def": 6,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: Use the lowest-ATK ready Oathguard unit.",
     "flavor_text": "",
     "art_brief": "Doubtbinder: Whisper Court Enemy Hero shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1655,9 +1549,7 @@
     "cost": 8,
     "atk": 6,
     "def": 9,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: Remove all temporary ATK bonuses from Oathguard units.",
     "flavor_text": "",
     "art_brief": "Malreth's Envoy: Whisper Court Enemy Hero shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1714,9 +1606,7 @@
     "cost": 10,
     "atk": 8,
     "def": 11,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: Each player has 2 less Current Energy on their next turn.",
     "flavor_text": "",
     "art_brief": "Oravax, Keeper of Doubt: Whisper Court Enemy Hero shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1735,9 +1625,7 @@
     "cost": 1,
     "atk": 2,
     "def": 1,
-    "keywords": [
-      "Echo"
-    ],
+    "keywords": ["Echo"],
     "rules_text": "Echo: Deal 1 Ward damage to the Oathguard Gate.",
     "flavor_text": "",
     "art_brief": "Rubble Runner: The Breakers Minion shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1756,9 +1644,7 @@
     "cost": 1,
     "atk": 1,
     "def": 2,
-    "keywords": [
-      "Shield Matrix"
-    ],
+    "keywords": ["Shield Matrix"],
     "rules_text": "Shield Matrix.",
     "flavor_text": "",
     "art_brief": "Stonejaw Grub: The Breakers Creature shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1777,9 +1663,7 @@
     "cost": 2,
     "atk": 3,
     "def": 2,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: Deal 1 damage to an Aegis unit.",
     "flavor_text": "",
     "art_brief": "Hammer Cadet: The Breakers Minion shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1798,9 +1682,7 @@
     "cost": 2,
     "atk": null,
     "def": null,
-    "keywords": [
-      "Fracture"
-    ],
+    "keywords": ["Fracture"],
     "rules_text": "Fracture 2.",
     "flavor_text": "",
     "art_brief": "Crack the Mortar: The Breakers Shadow Spell shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1857,9 +1739,7 @@
     "cost": 4,
     "atk": 5,
     "def": 4,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: Deal 1 Ward damage to the Oathguard Gate.",
     "flavor_text": "",
     "art_brief": "Bronze Ram Construct: The Breakers Creature shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1897,9 +1777,7 @@
     "cost": 4,
     "atk": 3,
     "def": 5,
-    "keywords": [
-      "Echo"
-    ],
+    "keywords": ["Echo"],
     "rules_text": "Echo: Deal 1 Ward damage to the Oathguard Gate.",
     "flavor_text": "",
     "art_brief": "Breaker Sapper: The Breakers Minion shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1956,9 +1834,7 @@
     "cost": 6,
     "atk": 4,
     "def": 8,
-    "keywords": [
-      "Shield Matrix"
-    ],
+    "keywords": ["Shield Matrix"],
     "rules_text": "Shield Matrix.",
     "flavor_text": "",
     "art_brief": "Obsidian Tortoise: The Breakers Creature shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -1977,9 +1853,7 @@
     "cost": 7,
     "atk": 6,
     "def": 7,
-    "keywords": [
-      "Deploy"
-    ],
+    "keywords": ["Deploy"],
     "rules_text": "Deploy: Ready the highest-ATK Hollow Crown unit.",
     "flavor_text": "",
     "art_brief": "War Engine Igniter: The Breakers Enemy Hero shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -2036,9 +1910,7 @@
     "cost": 9,
     "atk": null,
     "def": null,
-    "keywords": [
-      "Fracture"
-    ],
+    "keywords": ["Fracture"],
     "rules_text": "Fracture 6. If the Gate is broken, destroy 2 crystals instead.",
     "flavor_text": "",
     "art_brief": "Collapse the Arch: The Breakers Shadow Spell shown in a varied dark environment with purple crest accents and no horror imagery.",
@@ -2057,10 +1929,7 @@
     "cost": 10,
     "atk": 10,
     "def": 10,
-    "keywords": [
-      "Shield Matrix",
-      "Deploy"
-    ],
+    "keywords": ["Shield Matrix", "Deploy"],
     "rules_text": "Shield Matrix. Deploy: Deal 3 Ward damage to the Oathguard Gate.",
     "flavor_text": "",
     "art_brief": "Vorak's Siege Titan: The Breakers Creature shown in a varied dark environment with purple crest accents and no horror imagery.",

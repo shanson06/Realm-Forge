@@ -93,8 +93,7 @@ export const QUICK_BOSSES: readonly QuickBossProfile[] = [
     gateWardBonus: 0,
     allyAtkBonus: 0,
     chargeDrain: 0,
-    revealText:
-      "Reveal: Fracture 4, or destroy 2 crystals if the Oathguard Gate is broken.",
+    revealText: "Reveal: Fracture 4, or destroy 2 crystals if the Oathguard Gate is broken.",
     summary: "Built to break walls. His waking blow lands straight on your defences.",
     modifierLabel: "Reveal: Fracture 4 (or 2 crystals)",
   },

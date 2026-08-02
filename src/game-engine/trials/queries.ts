@@ -42,11 +42,7 @@ export function keywordsOf(state: TrialsMatchState, instanceId: string): readonl
   return [...definitionOf(state, instanceId).keywords, ...inst.grantedKeywords];
 }
 
-export function hasKeyword(
-  state: TrialsMatchState,
-  instanceId: string,
-  keyword: Keyword,
-): boolean {
+export function hasKeyword(state: TrialsMatchState, instanceId: string, keyword: Keyword): boolean {
   return keywordsOf(state, instanceId).includes(keyword);
 }
 

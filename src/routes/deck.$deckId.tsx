@@ -29,12 +29,18 @@ export const Route = createFileRoute("/deck/$deckId")({
   }),
   component: DeckViewer,
   pendingComponent: () => <p className="p-6 text-muted-foreground">Loading deck…</p>,
-  errorComponent: ({ error }) => <p role="alert" className="p-6">{error.message}</p>,
-  notFoundComponent: () => {
-    const { deckId } = Route.useParams();
-    return <p className="p-6">No QuickPlay deck named “{deckId}”.</p>;
-  },
+  errorComponent: ({ error }) => (
+    <p role="alert" className="p-6">
+      {error.message}
+    </p>
+  ),
+  notFoundComponent: DeckNotFound,
 });
+
+function DeckNotFound() {
+  const { deckId } = Route.useParams();
+  return <p className="p-6">No QuickPlay deck named “{deckId}”.</p>;
+}
 
 function DeckViewer() {
   const { deckId } = Route.useParams();

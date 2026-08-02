@@ -23,8 +23,7 @@ export function UpdatePrompt() {
       className="fixed bottom-[calc(0.75rem+env(safe-area-inset-bottom))] right-[calc(0.75rem+env(safe-area-inset-right))] z-40 max-w-[22rem] rounded-xl border border-oath-gold/50 bg-background/95 p-4 shadow-xl backdrop-blur"
     >
       <p className="flex items-center gap-2 font-display text-sm text-oath-gold">
-        <RefreshCw aria-hidden className="size-4" />
-        A new version of Realmforge is ready
+        <RefreshCw aria-hidden className="size-4" />A new version of Realmforge is ready
       </p>
       <p className="mt-1 text-xs text-muted-foreground">
         Your saved matches, decks, and settings are kept. Finish your turn first — the update

@@ -333,7 +333,10 @@ export function buildQuickPlayDeck(manifest: QuickPlayDeckManifest): QuickPlayDe
     entries.push({ card: matches[0], copies: QUICKPLAY_COPIES_PER_TITLE });
   }
 
-  if (manifest.status !== "awaiting-source" && manifest.titles.length !== QUICKPLAY_TITLES_PER_DECK) {
+  if (
+    manifest.status !== "awaiting-source" &&
+    manifest.titles.length !== QUICKPLAY_TITLES_PER_DECK
+  ) {
     issues.push({
       severity: "error",
       code: "deck-size",

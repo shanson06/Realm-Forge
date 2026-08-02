@@ -148,8 +148,8 @@ export function buildAuditReport(): AuditReport {
     idCollisions: findIdCollisions(),
     missingArt,
     effectCoverage: computeCardCoverage(quickPlayCardUniverse()),
-    keywordUsage: [...keywordCounts.values()].sort((a, b) =>
-      a.keyword.localeCompare(b.keyword) || a.mode.localeCompare(b.mode),
+    keywordUsage: [...keywordCounts.values()].sort(
+      (a, b) => a.keyword.localeCompare(b.keyword) || a.mode.localeCompare(b.mode),
     ),
     conflicts: OPEN_CONFLICTS,
   };

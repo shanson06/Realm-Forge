@@ -138,9 +138,7 @@ function ContentAudit() {
           )}
         </Section>
 
-        <Section
-          title={`QuickPlay card art import (${art.imported.length}/${art.total} imported)`}
-        >
+        <Section title={`QuickPlay card art import (${art.imported.length}/${art.total} imported)`}>
           <p className="mb-3 text-sm text-muted-foreground">
             Art is mapped into RealmCard by stable card ID. {art.pending.length} QuickPlay cards
             still render the “Art pending” window.

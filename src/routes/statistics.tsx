@@ -24,7 +24,11 @@ export const Route = createFileRoute("/statistics")({
     ],
   }),
   component: Statistics,
-  errorComponent: ({ error }) => <p role="alert" className="p-6">{error.message}</p>,
+  errorComponent: ({ error }) => (
+    <p role="alert" className="p-6">
+      {error.message}
+    </p>
+  ),
 });
 
 function Stat({ label, value }: { label: string; value: string }) {
@@ -86,7 +90,9 @@ function Statistics() {
                   aria-label={`${order} mastery: ${wins} of ${goal} wins`}
                 />
                 <p className="mt-1 text-xs text-muted-foreground">
-                  {next === null ? "Maximum rank reached." : `${next - wins} more win(s) to rank ${rank + 1}.`}
+                  {next === null
+                    ? "Maximum rank reached."
+                    : `${next - wins} more win(s) to rank ${rank + 1}.`}
                 </p>
               </li>
             );

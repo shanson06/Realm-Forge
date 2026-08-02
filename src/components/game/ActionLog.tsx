@@ -12,7 +12,10 @@ export function ActionLog({ entries, className }: ActionLogProps) {
   return (
     <section
       aria-label="Action history"
-      className={cn("flex min-h-0 flex-col rounded-lg border border-border/70 bg-card/60", className)}
+      className={cn(
+        "flex min-h-0 flex-col rounded-lg border border-border/70 bg-card/60",
+        className,
+      )}
     >
       <h2 className="border-b border-border/70 px-3 py-2 font-display text-xs tracking-widest uppercase">
         Action history
@@ -27,7 +30,9 @@ export function ActionLog({ entries, className }: ActionLogProps) {
               <span className="font-mono text-muted-foreground">R{entry.round}</span>
               <span className="min-w-0 flex-1">
                 <span className="block">{entry.summary}</span>
-                {entry.detail && <span className="block text-muted-foreground">{entry.detail}</span>}
+                {entry.detail && (
+                  <span className="block text-muted-foreground">{entry.detail}</span>
+                )}
               </span>
               {entry.undoSafe && (
                 <span className="shrink-0 self-start rounded-sm border border-oath-cyan/50 px-1 text-[0.6rem] text-oath-cyan uppercase">

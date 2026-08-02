@@ -46,7 +46,12 @@
     var(--hollow-steel) 60%,
     var(--hollow-violet) 100%
   );
-  --gradient-gilt: linear-gradient(100deg, var(--oath-gold-deep), var(--oath-gold), var(--oath-gold-deep));
+  --gradient-gilt: linear-gradient(
+    100deg,
+    var(--oath-gold-deep),
+    var(--oath-gold),
+    var(--oath-gold-deep)
+  );
   --shadow-relic: 0 18px 42px -18px color-mix(in oklab, var(--oath-blue) 65%, transparent);
   --shadow-hollow: 0 18px 42px -18px color-mix(in oklab, var(--hollow-violet) 60%, transparent);
   --glow-crystal: 0 0 14px color-mix(in oklab, var(--oath-cyan) 70%, transparent);
@@ -62,12 +67,17 @@
   --faction-breakers: oklch(0.63 0.19 32);
 
   /* --- Material layers --- */
-  --texture-blackglass: radial-gradient(
+  --texture-blackglass:
+    radial-gradient(
       120% 90% at 12% 0%,
       color-mix(in oklab, var(--hollow-steel-light) 22%, transparent),
       transparent 60%
     ),
-    linear-gradient(180deg, color-mix(in oklab, var(--hollow-blackglass) 92%, transparent), transparent);
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--hollow-blackglass) 92%, transparent),
+      transparent
+    );
   --texture-metal: repeating-linear-gradient(
     115deg,
     color-mix(in oklab, var(--oath-silver) 6%, transparent) 0 2px,
@@ -146,8 +156,13 @@
 /* Solid parchment rules panel — dark ink on aged paper, as on the printed cards. */
 @utility panel-parchment {
   background-color: var(--realm-parchment);
-  background-image: var(--texture-parchment),
-    linear-gradient(160deg, transparent 40%, color-mix(in oklab, var(--realm-parchment-deep) 80%, transparent));
+  background-image:
+    var(--texture-parchment),
+    linear-gradient(
+      160deg,
+      transparent 40%,
+      color-mix(in oklab, var(--realm-parchment-deep) 80%, transparent)
+    );
   color: var(--realm-ink);
   box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--oath-gold-deep) 45%, transparent);
 }
@@ -172,13 +187,21 @@
 /* Battlefield bed: stone flagstones washed with Forge light. */
 @utility board-bed {
   background-image:
-    radial-gradient(120% 80% at 50% 0%, color-mix(in oklab, var(--oath-blue) 22%, transparent), transparent 70%),
+    radial-gradient(
+      120% 80% at 50% 0%,
+      color-mix(in oklab, var(--oath-blue) 22%, transparent),
+      transparent 70%
+    ),
     repeating-linear-gradient(
       90deg,
       color-mix(in oklab, var(--oath-silver) 4%, transparent) 0 1px,
       transparent 1px 64px
     ),
-    linear-gradient(180deg, color-mix(in oklab, var(--oath-blue-deep) 70%, transparent), transparent);
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--oath-blue-deep) 70%, transparent),
+      transparent
+    );
 }
 
 /* --- Animation and feedback ------------------------------------------------
@@ -187,41 +210,95 @@
  * code. Animations are decorative only; state is already resolved when they run.
  */
 @keyframes realm-fade-in {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 @keyframes realm-arrive {
-  0% { opacity: 0; transform: translateY(14px) scale(0.94); }
-  70% { opacity: 1; transform: translateY(-2px) scale(1.02); }
-  100% { opacity: 1; transform: none; }
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.94);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
 }
 @keyframes realm-draw {
-  from { opacity: 0; transform: translateX(-18px) rotate(-4deg); }
-  to { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: translateX(-18px) rotate(-4deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 @keyframes realm-pulse-ring {
-  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--oath-cyan) 55%, transparent); }
-  50% { box-shadow: 0 0 0 6px color-mix(in oklab, var(--oath-cyan) 0%, transparent); }
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--oath-cyan) 55%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 6px color-mix(in oklab, var(--oath-cyan) 0%, transparent);
+  }
 }
 @keyframes realm-shimmer {
-  0%, 100% { filter: brightness(1); }
-  50% { filter: brightness(1.35); }
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.35);
+  }
 }
 @keyframes realm-shake {
-  0%, 100% { transform: none; }
-  20% { transform: translateX(-3px); }
-  40% { transform: translateX(3px); }
-  60% { transform: translateX(-2px); }
-  80% { transform: translateX(2px); }
+  0%,
+  100% {
+    transform: none;
+  }
+  20% {
+    transform: translateX(-3px);
+  }
+  40% {
+    transform: translateX(3px);
+  }
+  60% {
+    transform: translateX(-2px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
 }
 @keyframes realm-rise {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 @keyframes realm-fx-flash {
-  0% { opacity: 0; }
-  25% { opacity: 0.55; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* Full-screen cue flash. Colour is set per cue via --realm-fx-tint, and a
@@ -234,7 +311,8 @@
     color-mix(in oklab, var(--realm-fx-tint, var(--oath-cyan)) 34%, transparent),
     transparent 62%
   );
-  box-shadow: inset 0 0 0 3px color-mix(in oklab, var(--realm-fx-tint, var(--oath-cyan)) 40%, transparent);
+  box-shadow: inset 0 0 0 3px
+    color-mix(in oklab, var(--realm-fx-tint, var(--oath-cyan)) 40%, transparent);
   animation: realm-fx-flash calc(0.6s * var(--anim-scale)) ease-out both;
 }
 .realm-reduced-motion .realm-fx-flash,
@@ -265,9 +343,15 @@ html[data-animation-speed="off"] .realm-fx-flash {
 }
 
 /* Animation speed control. "off" removes decorative motion entirely. */
-html[data-animation-speed="fast"] { --anim-scale: 0.6; }
-html[data-animation-speed="reduced"] { --anim-scale: 1.6; }
-html[data-animation-speed="off"] * { animation: none !important; }
+html[data-animation-speed="fast"] {
+  --anim-scale: 0.6;
+}
+html[data-animation-speed="reduced"] {
+  --anim-scale: 1.6;
+}
+html[data-animation-speed="off"] * {
+  animation: none !important;
+}
 
 /* Screen shake is separable from the wider reduced-motion switch. */
 .realm-no-shake .realm-impact,

@@ -245,11 +245,7 @@ export type Prompt =
 
 export interface MatchResult {
   readonly outcome:
-    | "oathguard-victory"
-    | "hollow-crown-victory"
-    | "player-victory"
-    | "draw"
-    | "surrendered";
+    "oathguard-victory" | "hollow-crown-victory" | "player-victory" | "draw" | "surrendered";
   readonly winningPlayerIds: readonly PlayerId[];
   readonly reason: string;
   readonly rounds: number;
@@ -335,8 +331,7 @@ export interface IllegalReason {
 }
 
 export type ActionLegality =
-  | { readonly legal: true }
-  | { readonly legal: false; readonly reason: IllegalReason };
+  { readonly legal: true } | { readonly legal: false; readonly reason: IllegalReason };
 
 /** Deep-mutable view used inside the reducer. The reducer clones once, mutates, freezes conceptually. */
 export type Mutable<T> = T extends readonly (infer U)[]

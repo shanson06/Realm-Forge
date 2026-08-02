@@ -2,7 +2,14 @@
  * Truthwardens Trials QuickPlay effects.
  * Wording source: realmforge_oathguard_trials_card_database.json (Truthwardens Trials Deck).
  */
-import { drawCard, damageUnit, discardFromHand, moveToDiscard, log, restoreWard } from "../mutations";
+import {
+  drawCard,
+  damageUnit,
+  discardFromHand,
+  moveToDiscard,
+  log,
+  restoreWard,
+} from "../mutations";
 import { definitionOf, remainingDef, unitsOf } from "../queries";
 import { otherSeat, type TrialsDraft, type TrialsMatchState, type TrialsSeatId } from "../types";
 import {
@@ -87,7 +94,8 @@ registerTrialsEffects([
   },
   {
     cardId: "RF-TRIAL-TRU-005",
-    sourceText: "When this attacks, look at the top card of your deck. You may place it on the bottom.",
+    sourceText:
+      "When this attacks, look at the top card of your deck. You may place it on the bottom.",
     afterAttack: (draft, selfId) => {
       openForesight(draft, {
         selfId,

@@ -78,7 +78,8 @@ const STEP_LABEL: Record<TrialsMatchState["step"], string> = {
 };
 
 function TrialsMatchScreen() {
-  const { state, loading, notice, aiThinking, dispatch, startNewMatch, dismissNotice } = useTrials();
+  const { state, loading, notice, aiThinking, dispatch, startNewMatch, dismissNotice } =
+    useTrials();
   const [inspected, setInspected] = useState<CardDefinition | null>(null);
   const [attackerId, setAttackerId] = useState<string | null>(null);
   const [pendingHandId, setPendingHandId] = useState<string | null>(null);
@@ -105,8 +106,9 @@ function TrialsMatchScreen() {
   // Local statistics only. The human seat's result is what gets recorded.
   const outcome = useMemo(() => {
     if (!state?.result) return null;
-    const humanSeats = (Object.values(state.players) as { seatId: string; controller: string; faction: string }[])
-      .filter((p) => p.controller === "human");
+    const humanSeats = (
+      Object.values(state.players) as { seatId: string; controller: string; faction: string }[]
+    ).filter((p) => p.controller === "human");
     const primary = humanSeats[0];
     if (!primary) return null;
     return {
@@ -255,7 +257,10 @@ function TrialsMatchScreen() {
       actions={
         <div className="flex flex-wrap gap-2">
           {humanTurn && state.step === "play" && (
-            <Button variant="secondary" onClick={() => dispatch({ kind: "beginStep", step: "battle" })}>
+            <Button
+              variant="secondary"
+              onClick={() => dispatch({ kind: "beginStep", step: "battle" })}
+            >
               Go to Battle
             </Button>
           )}
@@ -313,7 +318,8 @@ function TrialsMatchScreen() {
       {state.result && (
         <Alert className="realm-rise mb-4 border-oath-cyan/70 forge-glow" role="alert">
           <AlertTitle className="font-display">
-            {state.players[state.result.winningPlayerIds[0] as TrialsSeatId]?.displayName ?? "Match"}{" "}
+            {state.players[state.result.winningPlayerIds[0] as TrialsSeatId]?.displayName ??
+              "Match"}{" "}
             wins
           </AlertTitle>
           <AlertDescription className="space-y-2">
@@ -334,7 +340,9 @@ function TrialsMatchScreen() {
           <TrialsPromptPanel
             prompt={state.prompt}
             state={state}
-            onChoose={(effectId, targetIds) => dispatch({ kind: "chooseTarget", effectId, targetIds })}
+            onChoose={(effectId, targetIds) =>
+              dispatch({ kind: "chooseTarget", effectId, targetIds })
+            }
             onKeepHand={() => dispatch({ kind: "mulligan", replace: false })}
             onReplaceHand={() => dispatch({ kind: "mulligan", replace: true })}
             onCancel={() => dispatch({ kind: "cancelPending" })}

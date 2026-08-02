@@ -120,9 +120,13 @@ export function addTurnAtk(draft: TrialsDraft, instanceId: string, amount: numbe
   const inst = draft.instances[instanceId];
   if (!inst) return;
   inst.temporaryAtk += amount;
-  log(draft, `${draft.players[inst.ownerId as TrialsSeatId].displayName}'s unit gains +${amount} ATK this turn.`, {
-    seatId: inst.ownerId as TrialsSeatId,
-  });
+  log(
+    draft,
+    `${draft.players[inst.ownerId as TrialsSeatId].displayName}'s unit gains +${amount} ATK this turn.`,
+    {
+      seatId: inst.ownerId as TrialsSeatId,
+    },
+  );
 }
 
 export function addNextAttackAtk(draft: TrialsDraft, instanceId: string, amount: number): void {

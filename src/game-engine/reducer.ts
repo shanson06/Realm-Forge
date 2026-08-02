@@ -140,7 +140,11 @@ function spendEnergy(draft: MatchDraft, cost: number): void {
   if (cost > 0) cue(draft, "spend");
 }
 
-function runDeployEffect(draft: MatchDraft, instanceId: string, targetIds: readonly string[]): void {
+function runDeployEffect(
+  draft: MatchDraft,
+  instanceId: string,
+  targetIds: readonly string[],
+): void {
   const definitionId = draft.board.instances[instanceId].definitionId;
   const effect = getEffect(draft.mode, definitionId);
   if (!effect?.handler) return;
@@ -163,10 +167,14 @@ function playCard(
   oath.cardsPlayedThisTurn += 1;
   draft.stats.cardsPlayed += 1;
   inst.controllerSeatId = draft.activeSeatId;
-  log(draft, `${draft.seats[draft.activeSeatId].displayName} plays ${card.name} for ${card.cost} Energy.`, {
-    playerId: OATHGUARD,
-    detail: card.rules_text || undefined,
-  });
+  log(
+    draft,
+    `${draft.seats[draft.activeSeatId].displayName} plays ${card.name} for ${card.cost} Energy.`,
+    {
+      playerId: OATHGUARD,
+      detail: card.rules_text || undefined,
+    },
+  );
 
   if (isUnitCard(card)) {
     const slot = slotIndex ?? firstEmptyUnitSlot(draft, OATHGUARD) ?? 0;

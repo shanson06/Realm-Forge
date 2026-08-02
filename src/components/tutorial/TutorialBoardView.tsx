@@ -94,7 +94,12 @@ export function TutorialBoardView({ boardState, step, onAct, onInspect }: Props)
             className={cn("text-left", zone(active("enemyGate"), clickable("enemyGate")))}
           >
             <Pointer show={active("enemyGate")} />
-            <Gate allegiance="hollow" label="Hollow Crown Gate" ward={boardState.enemyGate} maxWard={10} />
+            <Gate
+              allegiance="hollow"
+              label="Hollow Crown Gate"
+              ward={boardState.enemyGate}
+              maxWard={10}
+            />
           </button>
           <button
             type="button"
@@ -103,7 +108,11 @@ export function TutorialBoardView({ boardState, step, onAct, onInspect }: Props)
             className={cn("text-left", zone(active("enemyCrystals"), clickable("enemyCrystals")))}
           >
             <Pointer show={active("enemyCrystals")} />
-            <CrystalSpinner allegiance="hollow" label="Hollow Crown crystals" remaining={boardState.enemyCrystals} />
+            <CrystalSpinner
+              allegiance="hollow"
+              label="Hollow Crown crystals"
+              remaining={boardState.enemyCrystals}
+            />
           </button>
         </div>
       </div>
@@ -122,7 +131,8 @@ export function TutorialBoardView({ boardState, step, onAct, onInspect }: Props)
         </p>
         {boardState.bossRevealed && (
           <p className="font-mono text-xs text-muted-foreground">
-            Health {Math.max(0, boardState.bossHealth - boardState.bossDamage)}/{boardState.bossHealth}
+            Health {Math.max(0, boardState.bossHealth - boardState.bossDamage)}/
+            {boardState.bossHealth}
           </p>
         )}
       </button>
@@ -130,9 +140,7 @@ export function TutorialBoardView({ boardState, step, onAct, onInspect }: Props)
       {/* Oathguard side */}
       <div className="grid gap-3 sm:grid-cols-[1fr_16rem]">
         <div className={zone(step?.target === "friendlyUnit", clickable("friendlyUnit"))}>
-          <p className="mb-2 text-[0.65rem] tracking-widest text-oath-cyan uppercase">
-            Your units
-          </p>
+          <p className="mb-2 text-[0.65rem] tracking-widest text-oath-cyan uppercase">Your units</p>
           <div className="flex flex-wrap gap-2">
             {boardState.units.length === 0 && (
               <p className="text-xs text-muted-foreground">No units yet.</p>
@@ -175,9 +183,18 @@ export function TutorialBoardView({ boardState, step, onAct, onInspect }: Props)
             className={cn("text-left", zone(active("playerGate"), clickable("playerGate")))}
           >
             <Pointer show={active("playerGate")} />
-            <Gate allegiance="oathguard" label="Your Gate" ward={boardState.playerGate} maxWard={10} />
+            <Gate
+              allegiance="oathguard"
+              label="Your Gate"
+              ward={boardState.playerGate}
+              maxWard={10}
+            />
           </button>
-          <CrystalSpinner allegiance="oathguard" label="Your crystals" remaining={boardState.playerCrystals} />
+          <CrystalSpinner
+            allegiance="oathguard"
+            label="Your crystals"
+            remaining={boardState.playerCrystals}
+          />
         </div>
       </div>
 
@@ -212,11 +229,7 @@ export function TutorialBoardView({ boardState, step, onAct, onInspect }: Props)
             <EnergyCrystal
               key={i}
               state={
-                i < boardState.faceUp
-                  ? "faceUp"
-                  : i < boardState.energyTotal
-                    ? "faceDown"
-                    : "empty"
+                i < boardState.faceUp ? "faceUp" : i < boardState.energyTotal ? "faceDown" : "empty"
               }
             />
           ))}

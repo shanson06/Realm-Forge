@@ -51,8 +51,11 @@ export function shouldRegister(): boolean {
   if (!import.meta.env.PROD) return false;
   if (inIframe()) return false;
   if (isPreviewHost(window.location.hostname)) return false;
-  if (new URLSearchParams(window.location.search).has("sw") &&
-      new URLSearchParams(window.location.search).get("sw") === "off") return false;
+  if (
+    new URLSearchParams(window.location.search).has("sw") &&
+    new URLSearchParams(window.location.search).get("sw") === "off"
+  )
+    return false;
   return true;
 }
 
@@ -78,11 +81,9 @@ export async function registerServiceWorker(onUpdate: UpdateHandler): Promise<vo
       }
       // Reload once the new worker takes control, so the page and its cached
       // shell always come from the same build.
-      navigator.serviceWorker.addEventListener(
-        "controllerchange",
-        () => window.location.reload(),
-        { once: true },
-      );
+      navigator.serviceWorker.addEventListener("controllerchange", () => window.location.reload(), {
+        once: true,
+      });
       waiting.postMessage({ type: "SKIP_WAITING" });
     };
 

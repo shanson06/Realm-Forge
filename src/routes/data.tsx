@@ -24,13 +24,20 @@ export const Route = createFileRoute("/data")({
           "Export or import your Realmforge progress as a JSON backup, review saved matches, and clear local data. Guest play, no account.",
       },
       { property: "og:title", content: "Data Management — Realmforge" },
-      { property: "og:description", content: "Back up, restore, or clear your local Realmforge data." },
+      {
+        property: "og:description",
+        content: "Back up, restore, or clear your local Realmforge data.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
   }),
   component: DataManagement,
-  errorComponent: ({ error }) => <p role="alert" className="p-6">{error.message}</p>,
+  errorComponent: ({ error }) => (
+    <p role="alert" className="p-6">
+      {error.message}
+    </p>
+  ),
 });
 
 function DataManagement() {
@@ -45,7 +52,9 @@ function DataManagement() {
     listMatches()
       .then((m) => setMatchCount(m.length))
       .catch(() => setMatchCount(null));
-    storageAvailable().then(setAvailable).catch(() => setAvailable(false));
+    storageAvailable()
+      .then(setAvailable)
+      .catch(() => setAvailable(false));
   }, []);
 
   useEffect(reload, [reload]);
@@ -61,7 +70,11 @@ function DataManagement() {
       link.download = `realmforge-backup-${new Date().toISOString().slice(0, 10)}.json`;
       link.click();
       URL.revokeObjectURL(url);
-      setReport({ ok: true, message: "Backup downloaded.", restoredMatches: bundle.matches.length });
+      setReport({
+        ok: true,
+        message: "Backup downloaded.",
+        restoredMatches: bundle.matches.length,
+      });
     } finally {
       setBusy(false);
     }
@@ -108,7 +121,10 @@ function DataManagement() {
 
       <dl className="mb-6 grid gap-3 sm:grid-cols-3">
         <Info label="Saved matches" value={matchCount === null ? "—" : String(matchCount)} />
-        <Info label="Local database" value={available === null ? "…" : available ? "Available" : "Unavailable"} />
+        <Info
+          label="Local database"
+          value={available === null ? "…" : available ? "Available" : "Unavailable"}
+        />
         <Info label="Profile created" value={new Date(data.createdAt).toLocaleDateString()} />
       </dl>
 
@@ -142,7 +158,10 @@ function DataManagement() {
           </Button>
         </Panel>
 
-        <Panel title="Clear saved matches" body="Removes in-progress matches. Progress and achievements are kept.">
+        <Panel
+          title="Clear saved matches"
+          body="Removes in-progress matches. Progress and achievements are kept."
+        >
           <Button variant="outline" disabled={busy} onClick={() => void onClearMatches()}>
             Delete saved matches
           </Button>

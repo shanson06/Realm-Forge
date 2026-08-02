@@ -206,7 +206,11 @@ export const CUES: Record<CueId, CueDefinition> = {
   gateBreak: {
     category: "effects",
     caption: "Gate broken",
-    voices: [hit(0.7, 0.3, 1800), tone("sawtooth", 180, 55, 0.6, 0.09), tone("sine", 90, 60, 0.7, 0.05, 0.1)],
+    voices: [
+      hit(0.7, 0.3, 1800),
+      tone("sawtooth", 180, 55, 0.6, 0.09),
+      tone("sine", 90, 60, 0.7, 0.05, 0.1),
+    ],
   },
   crystalDamage: {
     category: "effects",

@@ -31,7 +31,11 @@ export const Route = createFileRoute("/settings")({
     ],
   }),
   component: SettingsScreen,
-  errorComponent: ({ error }) => <p role="alert" className="p-6">{error.message}</p>,
+  errorComponent: ({ error }) => (
+    <p role="alert" className="p-6">
+      {error.message}
+    </p>
+  ),
 });
 
 function SettingsScreen() {
@@ -144,7 +148,8 @@ function SettingsScreen() {
       </div>
       <p className="mt-4 text-xs text-muted-foreground">
         All Realmforge audio is generated in the app itself — no third-party or copyrighted music or
-        sound effects are used. Audio starts only after your first tap or key press, as browsers require.
+        sound effects are used. Audio starts only after your first tap or key press, as browsers
+        require.
       </p>
     </RealmShell>
   );

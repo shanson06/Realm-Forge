@@ -153,7 +153,11 @@ export type TrialsAction =
   | { readonly kind: "declareAttack"; readonly attackerId: string; readonly targetId: string }
   | { readonly kind: "beginStep"; readonly step: TrialsStep }
   | { readonly kind: "spendReserveToken" }
-  | { readonly kind: "chooseTarget"; readonly effectId: string; readonly targetIds: readonly string[] }
+  | {
+      readonly kind: "chooseTarget";
+      readonly effectId: string;
+      readonly targetIds: readonly string[];
+    }
   | { readonly kind: "cancelPending" }
   | { readonly kind: "acknowledgeHandoff" }
   | { readonly kind: "endTurn" }
@@ -178,8 +182,7 @@ export interface TrialsIllegalReason {
 }
 
 export type TrialsLegality =
-  | { readonly legal: true }
-  | { readonly legal: false; readonly reason: TrialsIllegalReason };
+  { readonly legal: true } | { readonly legal: false; readonly reason: TrialsIllegalReason };
 
 export interface TrialsOutcome {
   readonly state: TrialsMatchState;

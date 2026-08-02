@@ -7,7 +7,11 @@
  */
 import type { MatchDraft } from "../types";
 
-export type PromptResolver = (draft: MatchDraft, chosenIds: readonly string[], selfId: string) => void;
+export type PromptResolver = (
+  draft: MatchDraft,
+  chosenIds: readonly string[],
+  selfId: string,
+) => void;
 
 const RESOLVERS = new Map<string, PromptResolver>();
 

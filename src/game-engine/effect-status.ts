@@ -9,17 +9,8 @@
  */
 import type { CardDefinition } from "@/game-data/schema";
 import { GameMode, NON_DECK_TYPES } from "@/game-data/schema";
-import {
-  getEffect,
-  getEffectStatus,
-  registeredEffectCount,
-  type EffectCoverage,
-} from "./effects";
-import {
-  getTrialsEffect,
-  trialsEffectCount,
-  trialsEffectStatus,
-} from "./trials/effects";
+import { getEffect, getEffectStatus, registeredEffectCount, type EffectCoverage } from "./effects";
+import { getTrialsEffect, trialsEffectCount, trialsEffectStatus } from "./trials/effects";
 
 export type CardEffectStatus = "implemented" | "not-implemented" | "no-effect-required";
 

@@ -24,7 +24,11 @@ export const Route = createFileRoute("/tutorial/")({
     ],
   }),
   component: TutorialLibrary,
-  errorComponent: ({ error }) => <p role="alert" className="p-6">{error.message}</p>,
+  errorComponent: ({ error }) => (
+    <p role="alert" className="p-6">
+      {error.message}
+    </p>
+  ),
 });
 
 function LessonRow({ lesson, done }: { lesson: TutorialLesson; done: boolean }) {

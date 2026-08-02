@@ -76,8 +76,18 @@ registerPromptResolver("daw-009-second", (draft, chosen) => {
 const SURGE_ONLY = "Surge.";
 
 const EFFECTS: EffectImplementation[] = [
-  { cardId: "RF-OATH-DAW-001", mode: GameMode.Cooperative, sourceText: SURGE_ONLY, trigger: "static" },
-  { cardId: "RF-OATH-DAW-002", mode: GameMode.Cooperative, sourceText: SURGE_ONLY, trigger: "static" },
+  {
+    cardId: "RF-OATH-DAW-001",
+    mode: GameMode.Cooperative,
+    sourceText: SURGE_ONLY,
+    trigger: "static",
+  },
+  {
+    cardId: "RF-OATH-DAW-002",
+    mode: GameMode.Cooperative,
+    sourceText: SURGE_ONLY,
+    trigger: "static",
+  },
   {
     cardId: "RF-OATH-DAW-003",
     mode: GameMode.Cooperative,
@@ -120,7 +130,12 @@ const EFFECTS: EffectImplementation[] = [
       };
     },
   },
-  { cardId: "RF-OATH-DAW-005", mode: GameMode.Cooperative, sourceText: SURGE_ONLY, trigger: "static" },
+  {
+    cardId: "RF-OATH-DAW-005",
+    mode: GameMode.Cooperative,
+    sourceText: SURGE_ONLY,
+    trigger: "static",
+  },
   {
     cardId: "RF-OATH-DAW-006",
     mode: GameMode.Cooperative,
@@ -159,7 +174,12 @@ const EFFECTS: EffectImplementation[] = [
       };
     },
   },
-  { cardId: "RF-OATH-DAW-008", mode: GameMode.Cooperative, sourceText: SURGE_ONLY, trigger: "static" },
+  {
+    cardId: "RF-OATH-DAW-008",
+    mode: GameMode.Cooperative,
+    sourceText: SURGE_ONLY,
+    trigger: "static",
+  },
   {
     cardId: "RF-OATH-DAW-009",
     mode: GameMode.Cooperative,
@@ -181,7 +201,12 @@ const EFFECTS: EffectImplementation[] = [
       };
     },
   },
-  { cardId: "RF-OATH-DAW-010", mode: GameMode.Cooperative, sourceText: SURGE_ONLY, trigger: "static" },
+  {
+    cardId: "RF-OATH-DAW-010",
+    mode: GameMode.Cooperative,
+    sourceText: SURGE_ONLY,
+    trigger: "static",
+  },
 ];
 
 registerEffects(EFFECTS);

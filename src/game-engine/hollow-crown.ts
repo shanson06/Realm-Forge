@@ -28,12 +28,7 @@ import {
   remainingDef,
   unitsOf,
 } from "./queries";
-import {
-  HOLLOW,
-  OATHGUARD,
-  type CardInstance,
-  type MatchDraft,
-} from "./types";
+import { HOLLOW, OATHGUARD, type CardInstance, type MatchDraft } from "./types";
 
 export const VEYR_ID = "RF-HC-BOSS-001";
 
@@ -115,7 +110,11 @@ function resolveEncounter(draft: MatchDraft, instanceId: string): void {
   draft.board.instances[instanceId].zone = "discard";
 }
 
-function ignoresAegis(draft: MatchDraft, attacker: CardInstance, candidateDamaged: boolean): boolean {
+function ignoresAegis(
+  draft: MatchDraft,
+  attacker: CardInstance,
+  candidateDamaged: boolean,
+): boolean {
   if (draft.turnFlags.nextEnemyAttackIgnoresAegis) return true;
   // Vorak's units ignore Aegis entirely once he is revealed.
   if (draft.board.boss?.revealed && draft.board.boss.ignoresAegis) return true;
@@ -147,9 +146,13 @@ function chooseEnemyTarget(draft: MatchDraft, attacker: CardInstance): string | 
       return units.filter((u) => remainingDef(draft, u.instanceId) === lowest)[0].instanceId;
     }
 
-    const damagedPick = pickByTargetPriority(draft, units.filter((u) => u.damage > 0), {
-      ignoreAegis: true,
-    });
+    const damagedPick = pickByTargetPriority(
+      draft,
+      units.filter((u) => u.damage > 0),
+      {
+        ignoreAegis: true,
+      },
+    );
     if (damagedPick && ignoresAegis(draft, attacker, true)) return damagedPick.instanceId;
 
     const normal = pickByTargetPriority(draft, units, {

@@ -30,7 +30,11 @@ export const Route = createFileRoute("/profile")({
     ],
   }),
   component: Profile,
-  errorComponent: ({ error }) => <p role="alert" className="p-6">{error.message}</p>,
+  errorComponent: ({ error }) => (
+    <p role="alert" className="p-6">
+      {error.message}
+    </p>
+  ),
 });
 
 function Profile() {

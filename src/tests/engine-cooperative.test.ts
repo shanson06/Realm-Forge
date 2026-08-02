@@ -34,9 +34,7 @@ function settle(state: MatchState): MatchState {
 }
 
 function play(state: MatchState, instanceId: string, slotIndex: number | null = null): MatchState {
-  return settle(
-    applyActions(state, [{ kind: "playCard", instanceId, slotIndex, targetIds: [] }]),
-  );
+  return settle(applyActions(state, [{ kind: "playCard", instanceId, slotIndex, targetIds: [] }]));
 }
 
 function draftOf(state: MatchState): MatchDraft {
@@ -287,9 +285,7 @@ describe("save and restore", () => {
 
 describe("surrender", () => {
   it("ends the match immediately", () => {
-    const state = applyActions(keepHand(newMatch()), [
-      { kind: "surrender", playerId: OATHGUARD },
-    ]);
+    const state = applyActions(keepHand(newMatch()), [{ kind: "surrender", playerId: OATHGUARD }]);
     expect(state.result?.outcome).toBe("surrendered");
     expect(applyAction(state, { kind: "endTurn" }).legality.legal).toBe(false);
   });

@@ -111,7 +111,9 @@ export function canPlayCard(
   return illegal("illegal-target", `${card.name} cannot be played from hand.`);
 }
 
-export function playableHandCards(state: MatchState): { instanceId: string; legality: ActionLegality }[] {
+export function playableHandCards(
+  state: MatchState,
+): { instanceId: string; legality: ActionLegality }[] {
   return state.players[OATHGUARD].hand.map((instanceId) => ({
     instanceId,
     legality: canPlayCard(state, instanceId),

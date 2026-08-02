@@ -65,7 +65,10 @@ function Choice({
         tone === "oath"
           ? "border-oath-gold/35 bg-oath-blue-deep/50 hover:border-oath-gold"
           : "border-hollow-violet/40 bg-hollow-blackglass/70 hover:border-hollow-violet-bright",
-        selected && (tone === "oath" ? "border-oath-gold ring-2 ring-oath-cyan/70" : "border-hollow-violet-bright ring-2 ring-hollow-violet/70"),
+        selected &&
+          (tone === "oath"
+            ? "border-oath-gold ring-2 ring-oath-cyan/70"
+            : "border-hollow-violet-bright ring-2 ring-hollow-violet/70"),
         disabled && "cursor-not-allowed opacity-45",
       )}
     >
@@ -165,7 +168,11 @@ function CoopSetup() {
             </p>
             <div className="mt-3 grid gap-2 sm:grid-cols-3">
               {PLAYER_COUNTS.map((count) => (
-                <Choice key={count} selected={playerCount === count} onClick={() => changeCount(count)}>
+                <Choice
+                  key={count}
+                  selected={playerCount === count}
+                  onClick={() => changeCount(count)}
+                >
                   <p className="font-display text-lg">
                     {count} {count === 1 ? "player" : "players"}
                   </p>
@@ -268,11 +275,7 @@ function CoopSetup() {
           <dl className="space-y-2 text-sm">
             <div>
               <dt className="text-xs text-muted-foreground uppercase">Orders</dt>
-              <dd>
-                {orderDeckIds
-                  .map((id) => getManifest(id)?.label ?? id)
-                  .join(" · ")}
-              </dd>
+              <dd>{orderDeckIds.map((id) => getManifest(id)?.label ?? id).join(" · ")}</dd>
             </div>
             <div>
               <dt className="text-xs text-muted-foreground uppercase">Encounter deck</dt>
@@ -288,9 +291,16 @@ function CoopSetup() {
           <div className="h-px bg-[image:var(--gradient-gilt)] opacity-50" aria-hidden />
           <ul className="space-y-1 text-xs text-muted-foreground">
             <li>Both Gates start at 10 Ward; both Crystal Spinners start at 6.</li>
-            <li>Boss Health {bossHealthFor(playerCount)}. He wakes once the Hollow crystals fall.</li>
-            <li>{revealsPerTurn} encounter card{revealsPerTurn === 1 ? "" : "s"} revealed each Hollow Crown turn.</li>
-            <li>Two cards per player turn. Units enter ready but cannot attack unless they have Surge.</li>
+            <li>
+              Boss Health {bossHealthFor(playerCount)}. He wakes once the Hollow crystals fall.
+            </li>
+            <li>
+              {revealsPerTurn} encounter card{revealsPerTurn === 1 ? "" : "s"} revealed each Hollow
+              Crown turn.
+            </li>
+            <li>
+              Two cards per player turn. Units enter ready but cannot attack unless they have Surge.
+            </li>
           </ul>
           <Button variant="outline" asChild className="w-full">
             <Link to="/learn">How QuickPlay works</Link>

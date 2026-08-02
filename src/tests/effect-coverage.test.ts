@@ -14,9 +14,7 @@ describe("digital effect coverage", () => {
   });
 
   it("classifies setup, Gate and Boss records as needing no card effect", () => {
-    const nonDeck = cards.filter((card) =>
-      ["Reference", "Gate", "Final Boss"].includes(card.type),
-    );
+    const nonDeck = cards.filter((card) => ["Reference", "Gate", "Final Boss"].includes(card.type));
     expect(nonDeck.length).toBeGreaterThan(0);
     nonDeck.forEach((card) => expect(cardEffectStatus(card)).toBe("no-effect-required"));
   });

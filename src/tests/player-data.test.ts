@@ -64,7 +64,11 @@ describe("player data schema and migrations", () => {
   });
 
   it("keeps a save from a newer app version rather than discarding it", () => {
-    const future = { ...createPlayerData(), version: 99, stats: { ...createPlayerData().stats, coopWins: 7 } };
+    const future = {
+      ...createPlayerData(),
+      version: 99,
+      stats: { ...createPlayerData().stats, coopWins: 7 },
+    };
     const result = migratePlayerData(future);
     expect(result.data.version).toBe(99);
     expect(result.data.stats.coopWins).toBe(7);
@@ -108,7 +112,10 @@ describe("progression rules", () => {
   });
 
   it("does not re-stamp an already unlocked achievement", () => {
-    const data = reconcileProgression({ ...createPlayerData(), stats: { ...createPlayerData().stats, coopWins: 1 } }, "A");
+    const data = reconcileProgression(
+      { ...createPlayerData(), stats: { ...createPlayerData().stats, coopWins: 1 } },
+      "A",
+    );
     const again = reconcileProgression({ ...data, stats: { ...data.stats, coopWins: 5 } }, "B");
     expect(again.achievements["ach-first-coop-win"]).toBe("A");
   });

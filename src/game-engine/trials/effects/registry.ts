@@ -36,11 +36,7 @@ export interface TrialsEffect {
   /** Deploy / play resolution for units, Items and one-shots. */
   readonly onPlay?: (draft: TrialsDraft, ctx: TrialsEffectContext) => void;
   /** Extra ATK for one attack against a specific target. */
-  readonly attackBonus?: (
-    state: TrialsMatchState,
-    selfId: string,
-    targetId: string,
-  ) => number;
+  readonly attackBonus?: (state: TrialsMatchState, selfId: string, targetId: string) => number;
   /** Resolves after this unit's attack damage is applied. */
   readonly afterAttack?: (draft: TrialsDraft, selfId: string, targetId: string) => void;
   /** Resolves when this unit takes damage and survives. */

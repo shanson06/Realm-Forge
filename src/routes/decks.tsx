@@ -29,11 +29,18 @@ export const Route = createFileRoute("/decks")({
           "Review the six Realmforge QuickPlay decks, their source deck, title counts, and validation state.",
       },
       { property: "og:title", content: "Deck Selection — Realmforge" },
-      { property: "og:description", content: "The six QuickPlay decks and their validation state." },
+      {
+        property: "og:description",
+        content: "The six QuickPlay decks and their validation state.",
+      },
     ],
   }),
   component: DeckSelection,
-  errorComponent: ({ error }) => <p role="alert" className="p-6">{error.message}</p>,
+  errorComponent: ({ error }) => (
+    <p role="alert" className="p-6">
+      {error.message}
+    </p>
+  ),
   notFoundComponent: () => <p className="p-6">No decks found.</p>,
 });
 

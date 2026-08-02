@@ -42,13 +42,7 @@ export const CardTypeSchema = z.enum([
 export type CardType = z.infer<typeof CardTypeSchema>;
 
 /** Types that occupy a board space and can be played from hand. */
-export const UNIT_TYPES: readonly CardType[] = [
-  "Ally",
-  "Creature",
-  "Hero",
-  "Minion",
-  "Enemy Hero",
-];
+export const UNIT_TYPES: readonly CardType[] = ["Ally", "Creature", "Hero", "Minion", "Enemy Hero"];
 export const SUPPORT_TYPES: readonly CardType[] = ["Item", "Relic"];
 export const ONE_SHOT_TYPES: readonly CardType[] = ["Event", "Spell", "Dark Event", "Shadow Spell"];
 /** Not shuffled into any deck — setup, reference, gates, bosses. */
@@ -115,7 +109,8 @@ export const CompetitiveCardRecordSchema = BaseCardRecordSchema.extend({
 
 export type CooperativeCardRecord = z.infer<typeof CooperativeCardRecordSchema>;
 export type CompetitiveCardRecord = z.infer<typeof CompetitiveCardRecordSchema>;
-export type CardRecord = CooperativeCardRecord | Partial<CompetitiveCardRecord> & CooperativeCardRecord;
+export type CardRecord =
+  CooperativeCardRecord | (Partial<CompetitiveCardRecord> & CooperativeCardRecord);
 
 /**
  * A validated card definition, tagged with its owning mode.

@@ -59,7 +59,9 @@ export const Route = createFileRoute("/match")({
     ],
   }),
   component: MatchScreen,
-  pendingComponent: () => <p className="p-6 text-sm text-muted-foreground">Preparing the battlefield…</p>,
+  pendingComponent: () => (
+    <p className="p-6 text-sm text-muted-foreground">Preparing the battlefield…</p>
+  ),
   errorComponent: ({ error }) => (
     <div role="alert" className="space-y-3 p-6">
       <h1 className="font-display text-lg">The match could not be started</h1>
@@ -81,7 +83,8 @@ const STEP_LABEL: Record<MatchState["step"], string> = {
 };
 
 function MatchScreen() {
-  const { state, loading, notice, dispatch, startNewMatch, loadFromJson, dismissNotice } = useMatch();
+  const { state, loading, notice, dispatch, startNewMatch, loadFromJson, dismissNotice } =
+    useMatch();
   const [inspected, setInspected] = useState<CardDefinition | null>(null);
   const [attackerId, setAttackerId] = useState<string | null>(null);
   const [pendingHandId, setPendingHandId] = useState<string | null>(null);
@@ -152,7 +155,13 @@ function MatchScreen() {
 
   if (loading || !state) {
     return (
-      <RealmShell wide bed={null} eyebrow="Battlefield" title="Match" description="Restoring your match…">
+      <RealmShell
+        wide
+        bed={null}
+        eyebrow="Battlefield"
+        title="Match"
+        description="Restoring your match…"
+      >
         <p className="text-sm text-muted-foreground">Loading saved match state…</p>
       </RealmShell>
     );
@@ -242,7 +251,10 @@ function MatchScreen() {
       actions={
         <div className="flex flex-wrap gap-2">
           {state.step === "play" && yourTurn && (
-            <Button variant="secondary" onClick={() => dispatch({ kind: "beginStep", step: "battle" })}>
+            <Button
+              variant="secondary"
+              onClick={() => dispatch({ kind: "beginStep", step: "battle" })}
+            >
               Go to Battle
             </Button>
           )}
@@ -288,7 +300,9 @@ function MatchScreen() {
           <MatchPrompt
             prompt={state.prompt}
             state={state}
-            onChoose={(effectId, targetIds) => dispatch({ kind: "chooseTarget", effectId, targetIds })}
+            onChoose={(effectId, targetIds) =>
+              dispatch({ kind: "chooseTarget", effectId, targetIds })
+            }
             onKeepHand={() => dispatch({ kind: "mulligan", replace: false })}
             onReplaceHand={() => dispatch({ kind: "mulligan", replace: true })}
             onCancel={() => dispatch({ kind: "cancelPending" })}
@@ -310,7 +324,9 @@ function MatchScreen() {
                 label="Hollow Crown Gate"
                 ward={hollow.gateWard}
                 maxWard={hollow.gateMaxWard}
-                className={targets.includes(TARGET_HOLLOW_GATE) ? "ring-2 ring-oath-cyan" : undefined}
+                className={
+                  targets.includes(TARGET_HOLLOW_GATE) ? "ring-2 ring-oath-cyan" : undefined
+                }
               />
             </button>
             <button
@@ -348,7 +364,10 @@ function MatchScreen() {
 
           <div className="grid grid-cols-2 gap-2 md:grid-cols-5">
             {hollow.unitSlots.map((instanceId, index) => (
-              <div key={index} onClick={() => instanceId && targets.includes(instanceId) && attack(instanceId)}>
+              <div
+                key={index}
+                onClick={() => instanceId && targets.includes(instanceId) && attack(instanceId)}
+              >
                 <UnitSlot
                   index={index}
                   allegiance="hollow"
@@ -433,7 +452,9 @@ function MatchScreen() {
           <div className="flex flex-wrap items-stretch gap-3">
             <DeckPile count={oath.deck.length} allegiance="oathguard" />
             <DiscardPile
-              cards={oath.discard.map((id) => card(id)).filter((c): c is CardDefinition => c !== null)}
+              cards={oath.discard
+                .map((id) => card(id))
+                .filter((c): c is CardDefinition => c !== null)}
               onInspectTop={setInspected}
             />
             <EnergyTray

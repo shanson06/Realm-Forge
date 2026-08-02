@@ -31,7 +31,11 @@ export interface ShuffleResult<T> {
 }
 
 /** Fisher-Yates driven by the seeded stream. Returns the advanced cursor. */
-export function seededShuffle<T>(items: readonly T[], seed: string, cursor: number): ShuffleResult<T> {
+export function seededShuffle<T>(
+  items: readonly T[],
+  seed: string,
+  cursor: number,
+): ShuffleResult<T> {
   const out = [...items];
   let next = cursor;
   for (let i = out.length - 1; i > 0; i -= 1) {

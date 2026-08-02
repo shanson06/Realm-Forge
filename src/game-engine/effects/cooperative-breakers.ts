@@ -45,7 +45,9 @@ const EFFECTS: EffectImplementation[] = [
     sourceText: "Deploy: Deal 1 damage to an Aegis unit.",
     trigger: "deploy",
     handler: (draft) => {
-      const aegis = unitsOf(draft, OATHGUARD).filter((u) => hasKeyword(draft, u.instanceId, "Aegis"));
+      const aegis = unitsOf(draft, OATHGUARD).filter((u) =>
+        hasKeyword(draft, u.instanceId, "Aegis"),
+      );
       if (aegis.length === 0) {
         log(draft, "Hammer Cadet finds no Aegis unit to strike.", { playerId: HOLLOW });
         return;

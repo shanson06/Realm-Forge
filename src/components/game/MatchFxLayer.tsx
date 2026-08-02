@@ -32,7 +32,11 @@ const FX: Record<AnimationCue, FxStyle> = {
   effect: { label: "Effect resolves", tint: "var(--oath-cyan)", shake: false },
   restore: { label: "Ward restored", tint: "var(--oath-cyan)", shake: false },
   "gate-break": { label: "Gate broken", tint: "var(--hollow-violet-bright)", shake: true },
-  "crystal-damage": { label: "Crystal shattered", tint: "var(--hollow-violet-bright)", shake: true },
+  "crystal-damage": {
+    label: "Crystal shattered",
+    tint: "var(--hollow-violet-bright)",
+    shake: true,
+  },
   "boss-reveal": { label: "Boss revealed", tint: "var(--hollow-violet-bright)", shake: true },
   victory: { label: "Victory", tint: "var(--oath-gold)", shake: false },
   defeat: { label: "Defeat", tint: "var(--hollow-violet-bright)", shake: true },
@@ -71,8 +75,4 @@ export function MatchFxLayer({ animations, disabled = false }: MatchFxLayerProps
       </span>
     </div>
   );
-}
-
-export function fxLabel(cue: AnimationCue): string {
-  return FX[cue].label;
 }

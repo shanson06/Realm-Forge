@@ -50,7 +50,10 @@ registerTrialsEffects([
     sourceText: "Sync — If you control two ready units, draw 1 card.",
     onPlay: (draft, ctx) => {
       if (readyUnitsOf(draft, ctx.controller).length >= 2) drawCard(draft, ctx.controller);
-      else log(draft, "Twin Beacon Signal finds fewer than two ready units.", { seatId: ctx.controller });
+      else
+        log(draft, "Twin Beacon Signal finds fewer than two ready units.", {
+          seatId: ctx.controller,
+        });
     },
   },
   {

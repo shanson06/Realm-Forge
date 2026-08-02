@@ -15,8 +15,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Realmforge — Fantasy Strategy Card Game" },
       {
         property: "og:description",
-        content:
-          "Cooperative raids against the Hollow Crown and head-to-head Oathguard Trials.",
+        content: "Cooperative raids against the Hollow Crown and head-to-head Oathguard Trials.",
       },
     ],
   }),

@@ -101,7 +101,10 @@ export function drawCard(
       damageCrystals(draft, OATHGUARD, 1);
     } else {
       draft.players[HOLLOW].globalThreat += 1;
-      log(draft, `Encounter deck reshuffled — Global Threat is now ${draft.players[HOLLOW].globalThreat}.`);
+      log(
+        draft,
+        `Encounter deck reshuffled — Global Threat is now ${draft.players[HOLLOW].globalThreat}.`,
+      );
     }
     if (draft.result) return null;
   }
@@ -215,7 +218,10 @@ export function damageGate(draft: MatchDraft, side: SideId, amount: number): voi
   p.gateWard = Math.max(0, p.gateWard - incoming);
   if (side === OATHGUARD) draft.stats.damageTaken += before - p.gateWard;
   else draft.stats.damageDealt += before - p.gateWard;
-  log(draft, `${sideLabel(side)} Gate takes ${before - p.gateWard} Ward damage (${p.gateWard}/${p.gateMaxWard}).`);
+  log(
+    draft,
+    `${sideLabel(side)} Gate takes ${before - p.gateWard} Ward damage (${p.gateWard}/${p.gateMaxWard}).`,
+  );
   if (p.gateWard === 0) {
     cue(draft, "gate-break", side);
     log(draft, `${sideLabel(side)} Gate is broken.`);
@@ -230,7 +236,10 @@ export function restoreWard(draft: MatchDraft, side: SideId, amount: number): vo
   if (p.gateWard !== before) {
     if (side === OATHGUARD) draft.stats.wardRestored += p.gateWard - before;
     cue(draft, "restore", side);
-    log(draft, `${sideLabel(side)} Gate restores ${p.gateWard - before} Ward (${p.gateWard}/${p.gateMaxWard}).`);
+    log(
+      draft,
+      `${sideLabel(side)} Gate restores ${p.gateWard - before} Ward (${p.gateWard}/${p.gateMaxWard}).`,
+    );
   }
 }
 
@@ -251,7 +260,10 @@ export function damageBoss(draft: MatchDraft, amount: number): void {
   boss.damage += amount;
   draft.stats.damageDealt += amount;
   cue(draft, "damage", TARGET_BOSS);
-  log(draft, `The Quick Boss takes ${amount} damage (${Math.min(boss.damage, boss.health)}/${boss.health}).`);
+  log(
+    draft,
+    `The Quick Boss takes ${amount} damage (${Math.min(boss.damage, boss.health)}/${boss.health}).`,
+  );
   if (!boss.enraged && boss.health - boss.damage <= boss.enrageThreshold) {
     boss.enraged = true;
     log(draft, "The Quick Boss is Enraged.");
@@ -327,7 +339,10 @@ export function revealBoss(draft: MatchDraft): void {
         }
       }
       for (const seatId of draft.seatOrder) draft.seats[seatId].energyDrainNextCharge += 1;
-      log(draft, "Malreth's Reveal: temporary ATK bonuses are removed and every Order loses 1 Energy next turn.");
+      log(
+        draft,
+        "Malreth's Reveal: temporary ATK bonuses are removed and every Order loses 1 Energy next turn.",
+      );
       break;
     }
     case "RF-HC-BOSS-003":

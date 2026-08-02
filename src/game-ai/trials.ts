@@ -44,26 +44,24 @@ export interface TrialsDecision {
   readonly reason: string;
 }
 
-export const TRIALS_DIFFICULTIES: Record<
-  TrialsDifficulty,
-  { label: string; description: string }
-> = {
-  initiate: {
-    label: "Initiate",
-    description:
-      "Plays the most expensive card it can afford and takes obvious attacks. Limited look-ahead.",
-  },
-  guardian: {
-    label: "Guardian",
-    description:
-      "Weighs board control, Gate pressure, favourable trades, its Energy curve and its own defence.",
-  },
-  champion: {
-    label: "Champion",
-    description:
-      "Searches ordered action sequences within a capped budget and answers one-turn threats.",
-  },
-};
+export const TRIALS_DIFFICULTIES: Record<TrialsDifficulty, { label: string; description: string }> =
+  {
+    initiate: {
+      label: "Initiate",
+      description:
+        "Plays the most expensive card it can afford and takes obvious attacks. Limited look-ahead.",
+    },
+    guardian: {
+      label: "Guardian",
+      description:
+        "Weighs board control, Gate pressure, favourable trades, its Energy curve and its own defence.",
+    },
+    champion: {
+      label: "Champion",
+      description:
+        "Searches ordered action sequences within a capped budget and answers one-turn threats.",
+    },
+  };
 
 /* -------------------------------------------------------------------------- */
 /* Evaluation                                                                  */
@@ -72,7 +70,9 @@ export const TRIALS_DIFFICULTIES: Record<
 function boardValue(state: TrialsMatchState, seatId: TrialsSeatId): number {
   return unitsOf(state, seatId).reduce((total, unit) => {
     const aegis = hasKeyword(state, unit.instanceId, "Aegis") ? 1.5 : 0;
-    return total + attackOf(state, unit.instanceId) * 1.2 + remainingDef(state, unit.instanceId) + aegis;
+    return (
+      total + attackOf(state, unit.instanceId) * 1.2 + remainingDef(state, unit.instanceId) + aegis
+    );
   }, 0);
 }
 
@@ -277,14 +277,13 @@ function initiate(state: TrialsMatchState): TrialsDecision | null {
       const target = state.instances[attack.targetId];
       return target && attackOf(state, attack.attackerId) >= remainingDef(state, attack.targetId);
     });
-    const gateHit = attacks.find(
-      (a) => (a as { targetId: string }).targetId === gateTarget(foe),
-    );
+    const gateHit = attacks.find((a) => (a as { targetId: string }).targetId === gateTarget(foe));
     const chosen = lethal ?? gateHit ?? attacks[0];
     return { action: chosen, reason: `Initiate: ${describe(state, chosen)}` };
   }
 
-  const step = actions.find((a) => a.kind === "beginStep") ?? actions.find((a) => a.kind === "endTurn");
+  const step =
+    actions.find((a) => a.kind === "beginStep") ?? actions.find((a) => a.kind === "endTurn");
   return step ? { action: step, reason: `Initiate: ${describe(state, step)}` } : null;
 }
 

@@ -206,11 +206,7 @@ function declareAttack(draft: TrialsDraft, attackerId: string, targetId: string)
   const attacker = draft.instances[attackerId];
   const power = attackOf(draft, attackerId) + attackBonusAgainst(draft, attackerId, targetId);
 
-  log(
-    draft,
-    `${definitionOf(draft, attackerId).name} attacks for ${power}.`,
-    { seatId },
-  );
+  log(draft, `${definitionOf(draft, attackerId).name} attacks for ${power}.`, { seatId });
   attacker.exhausted = true;
   attacker.nextAttackAtk = 0;
   draft.attacksThisTurn += 1;
@@ -218,7 +214,8 @@ function declareAttack(draft: TrialsDraft, attackerId: string, targetId: string)
 
   resolveDamage(draft, targetId, power);
   checkVictory(draft);
-  if (!draft.result) getTrialsEffect(attacker.definitionId)?.afterAttack?.(draft, attackerId, targetId);
+  if (!draft.result)
+    getTrialsEffect(attacker.definitionId)?.afterAttack?.(draft, attackerId, targetId);
 }
 
 function spendReserveToken(draft: TrialsDraft): void {
@@ -303,10 +300,7 @@ function resolvePrompt(
 }
 
 /** The single entry point for changing competitive match state. */
-export function applyTrialsAction(
-  state: TrialsMatchState,
-  action: TrialsAction,
-): TrialsOutcome {
+export function applyTrialsAction(state: TrialsMatchState, action: TrialsAction): TrialsOutcome {
   const legality = checkTrialsAction(state, action);
   if (!legality.legal) return { state, legality };
 

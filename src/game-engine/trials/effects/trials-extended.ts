@@ -151,8 +151,7 @@ registerTrialsEffects([
       const deck = draft.players[opponent].deck;
       const revealed = deck.slice(0, 3);
       if (revealed.length === 0) return;
-      const target =
-        revealed.find((id) => (definitionOf(draft, id).cost ?? 0) <= 4) ?? revealed[0];
+      const target = revealed.find((id) => (definitionOf(draft, id).cost ?? 0) <= 4) ?? revealed[0];
       draft.players[opponent].deck = [...deck.filter((id) => id !== target), target];
       log(draft, "Marshal Verin buries a card from the opposing deck.", { seatId: ctx.controller });
     },
@@ -176,7 +175,9 @@ registerTrialsEffects([
           if (remaining <= 0) break;
           remaining -= healDamage(draft, unit.instanceId, remaining);
         }
-        log(draft, "Repair the Breach removes 3 damage from friendly units.", { seatId: ctx.controller });
+        log(draft, "Repair the Breach removes 3 damage from friendly units.", {
+          seatId: ctx.controller,
+        });
         return;
       }
       restoreWard(draft, ctx.controller, 3);
@@ -207,7 +208,9 @@ registerTrialsEffects([
     sourceText: "Remove all damage from up to two friendly units. Ready one of them.",
     onPlay: (draft, ctx) => {
       const chosen = mostDamagedFirst(draft, ctx.controller).slice(0, 2);
-      chosen.forEach((unit) => healDamage(draft, unit.instanceId, draft.instances[unit.instanceId].damage));
+      chosen.forEach((unit) =>
+        healDamage(draft, unit.instanceId, draft.instances[unit.instanceId].damage),
+      );
       const readyTarget = chosen.find((u) => draft.instances[u.instanceId].exhausted) ?? chosen[0];
       if (readyTarget) {
         draft.instances[readyTarget.instanceId].exhausted = false;
@@ -218,7 +221,8 @@ registerTrialsEffects([
   },
   {
     cardId: "RF-TRIAL-HON-016",
-    sourceText: "Response: Prevent all damage to your Gate from one attack. Restore 3 Ward to your Gate.",
+    sourceText:
+      "Response: Prevent all damage to your Gate from one attack. Restore 3 Ward to your Gate.",
     onPlay: (draft, ctx) => {
       addModifier(draft, {
         id: `wall-of-living-light:${ctx.selfId}`,
@@ -231,7 +235,9 @@ registerTrialsEffects([
         kind: "damage-prevention",
       });
       restoreWard(draft, ctx.controller, 3);
-      log(draft, "Wall of Living Light shields the Gate from the next attack.", { seatId: ctx.controller });
+      log(draft, "Wall of Living Light shields the Gate from the next attack.", {
+        seatId: ctx.controller,
+      });
     },
   },
   {

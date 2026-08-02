@@ -32,9 +32,13 @@ const EFFECTS: EffectImplementation[] = [
     sourceText: "Deploy: Deal 1 damage to the lowest-DEF Oathguard unit.",
     trigger: "deploy",
     handler: (draft) => {
-      const target = pickByTargetPriority(draft as never, oathguardUnits(draft), { ignoreAegis: true });
+      const target = pickByTargetPriority(draft as never, oathguardUnits(draft), {
+        ignoreAegis: true,
+      });
       if (!target) return;
-      log(draft, "Maskling Sneak deals 1 damage to the lowest-DEF Oathguard unit.", { playerId: HOLLOW });
+      log(draft, "Maskling Sneak deals 1 damage to the lowest-DEF Oathguard unit.", {
+        playerId: HOLLOW,
+      });
       damageUnit(draft, target.instanceId, 1);
     },
   },
@@ -51,7 +55,9 @@ const EFFECTS: EffectImplementation[] = [
     sourceText: "Deploy: If no Aegis unit is in play, deal 1 Ward damage to the Oathguard Gate.",
     trigger: "deploy",
     handler: (draft) => {
-      const anyAegis = oathguardUnits(draft).some((u) => hasKeyword(draft as never, u.instanceId, "Aegis"));
+      const anyAegis = oathguardUnits(draft).some((u) =>
+        hasKeyword(draft as never, u.instanceId, "Aegis"),
+      );
       if (anyAegis) return;
       log(draft, "Veil Runner slips past an undefended Gate.", { playerId: HOLLOW });
       damageGate(draft, OATHGUARD, 1);
@@ -92,7 +98,9 @@ const EFFECTS: EffectImplementation[] = [
       })[0];
       moveToLeftmost(draft, highest.instanceId);
       draft.turnFlags.attacksFirstInstanceId = highest.instanceId;
-      log(draft, "Mist Step pushes an enemy to the front of the attack order.", { playerId: HOLLOW });
+      log(draft, "Mist Step pushes an enemy to the front of the attack order.", {
+        playerId: HOLLOW,
+      });
     },
   },
   {
@@ -118,7 +126,7 @@ const EFFECTS: EffectImplementation[] = [
     sourceText: "Enemies with Threat 2 or less get +1 ATK.",
     trigger: "static",
     ambiguity:
-      "Resolved from source, not a judgement call: Realmforge_Volume_1_Foundation.md states \"Hollow Crown cards use Threat rather than Energy. The database field `cost` stores Threat for Hollow Crown cards.\" \"Enemies\" is written from the players' seat (see the Global Threat rule, \"Each enemy unit gains +1 ATK\"), so this grants +1 ATK to Hollow Crown units in play whose cost/Threat is 2 or less.",
+      'Resolved from source, not a judgement call: Realmforge_Volume_1_Foundation.md states "Hollow Crown cards use Threat rather than Energy. The database field `cost` stores Threat for Hollow Crown cards." "Enemies" is written from the players\' seat (see the Global Threat rule, "Each enemy unit gains +1 ATK"), so this grants +1 ATK to Hollow Crown units in play whose cost/Threat is 2 or less.',
     atkAura: (state, targetInstanceId) => {
       const target = state.board.instances[targetInstanceId];
       if (!target || target.ownerId !== HOLLOW || target.zone !== "unitSlot") return 0;

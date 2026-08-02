@@ -34,27 +34,37 @@ export function CardInspectModal({ card, open, onOpenChange }: CardInspectModalP
 
               <dl className="space-y-3 text-sm">
                 <div>
-                  <dt className="text-xs tracking-wide text-muted-foreground uppercase">Stable source ID</dt>
+                  <dt className="text-xs tracking-wide text-muted-foreground uppercase">
+                    Stable source ID
+                  </dt>
                   <dd className="font-mono text-xs">{card.id}</dd>
                 </div>
                 {card.sourceCardId && (
                   <div>
-                    <dt className="text-xs tracking-wide text-muted-foreground uppercase">Derived from</dt>
+                    <dt className="text-xs tracking-wide text-muted-foreground uppercase">
+                      Derived from
+                    </dt>
                     <dd className="font-mono text-xs">{card.sourceCardId}</dd>
                   </div>
                 )}
                 <div>
-                  <dt className="text-xs tracking-wide text-muted-foreground uppercase">Source rules text</dt>
+                  <dt className="text-xs tracking-wide text-muted-foreground uppercase">
+                    Source rules text
+                  </dt>
                   <dd>{card.rules_text}</dd>
                 </div>
                 <div>
-                  <dt className="text-xs tracking-wide text-muted-foreground uppercase">Cost / ATK / DEF</dt>
+                  <dt className="text-xs tracking-wide text-muted-foreground uppercase">
+                    Cost / ATK / DEF
+                  </dt>
                   <dd>
                     {card.cost} / {card.atk ?? "—"} / {card.def ?? "—"}
                   </dd>
                 </div>
                 <div>
-                  <dt className="text-xs tracking-wide text-muted-foreground uppercase">Keywords</dt>
+                  <dt className="text-xs tracking-wide text-muted-foreground uppercase">
+                    Keywords
+                  </dt>
                   <dd className="flex flex-wrap gap-1">
                     {card.keywords.length === 0 ? (
                       <span className="text-muted-foreground">None</span>
@@ -68,7 +78,9 @@ export function CardInspectModal({ card, open, onOpenChange }: CardInspectModalP
                   </dd>
                 </div>
                 <div>
-                  <dt className="text-xs tracking-wide text-muted-foreground uppercase">Digital effect</dt>
+                  <dt className="text-xs tracking-wide text-muted-foreground uppercase">
+                    Digital effect
+                  </dt>
                   <dd>
                     {(() => {
                       const summary = cardEffectSummary(card);
@@ -82,18 +94,24 @@ export function CardInspectModal({ card, open, onOpenChange }: CardInspectModalP
                       if (summary.status === "no-effect-required") {
                         return <span className="text-muted-foreground">No effect required</span>;
                       }
-                      return <span className="font-semibold text-realm-danger">NOT IMPLEMENTED</span>;
+                      return (
+                        <span className="font-semibold text-realm-danger">NOT IMPLEMENTED</span>
+                      );
                     })()}
                   </dd>
                 </div>
                 {card.flavor_text && (
                   <div>
-                    <dt className="text-xs tracking-wide text-muted-foreground uppercase">Flavor</dt>
+                    <dt className="text-xs tracking-wide text-muted-foreground uppercase">
+                      Flavor
+                    </dt>
                     <dd className="italic">{card.flavor_text}</dd>
                   </div>
                 )}
                 <div>
-                  <dt className="text-xs tracking-wide text-muted-foreground uppercase">Art brief</dt>
+                  <dt className="text-xs tracking-wide text-muted-foreground uppercase">
+                    Art brief
+                  </dt>
                   <dd className="text-muted-foreground">{card.art_brief || "—"}</dd>
                 </div>
               </dl>

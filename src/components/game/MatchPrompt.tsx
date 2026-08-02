@@ -45,8 +45,7 @@ export function MatchPrompt({
     );
   }
 
-  const ids =
-    prompt.kind === "encounterOrder" ? prompt.revealedIds : prompt.legalTargetIds;
+  const ids = prompt.kind === "encounterOrder" ? prompt.revealedIds : prompt.legalTargetIds;
 
   return (
     <section

@@ -101,11 +101,7 @@ function validateCard(card: CardDefinition): ValidationIssue[] {
   return issues;
 }
 
-function buildCatalog(
-  raw: unknown,
-  mode: GameMode,
-  fileName: string,
-): LoadedCatalog {
+function buildCatalog(raw: unknown, mode: GameMode, fileName: string): LoadedCatalog {
   const rows = Array.isArray(raw) ? raw : [];
   const schema =
     mode === GameMode.Competitive ? CompetitiveCardRecordSchema : CooperativeCardRecordSchema;
@@ -117,7 +113,8 @@ function buildCatalog(
   rows.forEach((row, index) => {
     const parsed = schema.safeParse(row);
     if (!parsed.success) {
-      const id = typeof (row as { id?: unknown })?.id === "string" ? (row as { id: string }).id : null;
+      const id =
+        typeof (row as { id?: unknown })?.id === "string" ? (row as { id: string }).id : null;
       issues.push({
         severity: "error",
         code: "schema",
@@ -228,7 +225,9 @@ export function getCard(mode: GameMode, id: string): CardDefinition | undefined 
 export function requireCard(mode: GameMode, id: string): CardDefinition {
   const card = getCard(mode, id);
   if (card) return card;
-  const other = getCatalog(mode === GameMode.Competitive ? GameMode.Cooperative : GameMode.Competitive);
+  const other = getCatalog(
+    mode === GameMode.Competitive ? GameMode.Cooperative : GameMode.Competitive,
+  );
   if (other.byId.has(id)) {
     throw new Error(
       `Cross-mode data access: "${id}" exists only in the ${other.mode} edition and must not be used in ${mode} mode.`,

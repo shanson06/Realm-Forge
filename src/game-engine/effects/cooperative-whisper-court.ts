@@ -39,7 +39,9 @@ const EFFECTS: EffectImplementation[] = [
       const target = highestAtkOathguardUnit(draft);
       if (!target) return;
       draft.board.instances[target.instanceId].temporaryAtk -= 1;
-      log(draft, "Doubt Whisper weakens the strongest Oathguard unit by 1 ATK.", { playerId: HOLLOW });
+      log(draft, "Doubt Whisper weakens the strongest Oathguard unit by 1 ATK.", {
+        playerId: HOLLOW,
+      });
     },
   },
   {
@@ -92,7 +94,9 @@ const EFFECTS: EffectImplementation[] = [
         amount: 1,
         kind: "enters-used",
       });
-      log(draft, "Unsteady Thought: the next Oathguard unit played enters used.", { playerId: HOLLOW });
+      log(draft, "Unsteady Thought: the next Oathguard unit played enters used.", {
+        playerId: HOLLOW,
+      });
     },
   },
   {
@@ -171,7 +175,9 @@ const EFFECTS: EffectImplementation[] = [
       const target = highestAtkOathguardUnit(draft);
       if (!target) return;
       draft.board.instances[target.instanceId].roundAtk -= 1;
-      log(draft, "Hushwing Shade's echo weakens the strongest Oathguard unit.", { playerId: HOLLOW });
+      log(draft, "Hushwing Shade's echo weakens the strongest Oathguard unit.", {
+        playerId: HOLLOW,
+      });
     },
   },
   {
