@@ -2,6 +2,7 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 
 import { ActionLog } from "@/components/game/ActionLog";
+import { BattleCommandBar } from "@/components/game/BattleCommandBar";
 import { CardInspectModal } from "@/components/game/CardInspectModal";
 import { CrystalSpinner } from "@/components/game/CrystalSpinner";
 import { DeckPile } from "@/components/game/DeckPile";
@@ -76,6 +77,14 @@ const STEP_LABEL: Record<TrialsMatchState["step"], string> = {
   battle: "Battle",
   pass: "Pass",
 };
+
+const TRIALS_STEPS = [
+  { id: "setup", label: "Setup" },
+  { id: "readyAndCharge", label: "Charge" },
+  { id: "play", label: "Play" },
+  { id: "battle", label: "Battle" },
+  { id: "pass", label: "Pass" },
+] as const;
 
 function TrialsMatchScreen() {
   const { state, loading, notice, aiThinking, dispatch, startNewMatch, dismissNotice } =
@@ -254,29 +263,6 @@ function TrialsMatchScreen() {
       eyebrow="Oathguard Trials"
       title={`${active.displayName}'s turn`}
       description={`Round ${state.round} · ${STEP_LABEL[state.step]} · ${active.cardsPlayedThisTurn}/${active.cardPlayLimit} cards played`}
-      actions={
-        <div className="flex flex-wrap gap-2">
-          {humanTurn && state.step === "play" && (
-            <Button
-              variant="secondary"
-              onClick={() => dispatch({ kind: "beginStep", step: "battle" })}
-            >
-              Go to Battle
-            </Button>
-          )}
-          {humanTurn && active.reserveToken === "available" && (
-            <Button variant="outline" onClick={() => dispatch({ kind: "spendReserveToken" })}>
-              Spend Reserve token
-            </Button>
-          )}
-          {humanTurn && !state.prompt && (
-            <Button onClick={() => dispatch({ kind: "endTurn" })}>End turn</Button>
-          )}
-          <Button variant="outline" onClick={() => setConfirmConcede(true)}>
-            Concede
-          </Button>
-        </div>
-      }
     >
       <div
         role="status"
@@ -294,6 +280,34 @@ function TrialsMatchScreen() {
       </div>
 
       <MatchNotice message={notice} onDismiss={dismissNotice} />
+
+      <BattleCommandBar
+        round={state.round}
+        currentStep={state.step}
+        steps={TRIALS_STEPS}
+        summary={`${STEP_LABEL[state.step]} · ${active.cardsPlayedThisTurn}/${active.cardPlayLimit} cards played`}
+        status={aiThinking ? "Computer deciding" : `${active.displayName} active`}
+      >
+        {humanTurn && state.step === "play" && (
+          <Button
+            variant="secondary"
+            onClick={() => dispatch({ kind: "beginStep", step: "battle" })}
+          >
+            Go to Battle
+          </Button>
+        )}
+        {humanTurn && active.reserveToken === "available" && (
+          <Button variant="outline" onClick={() => dispatch({ kind: "spendReserveToken" })}>
+            Spend Reserve
+          </Button>
+        )}
+        {humanTurn && !state.prompt && (
+          <Button onClick={() => dispatch({ kind: "endTurn" })}>End turn</Button>
+        )}
+        <Button variant="outline" onClick={() => setConfirmConcede(true)}>
+          Concede
+        </Button>
+      </BattleCommandBar>
 
       {pendingHandId && (
         <Alert className="mb-4 border-oath-cyan/60" role="status">

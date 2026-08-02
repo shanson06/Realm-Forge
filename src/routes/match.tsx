@@ -2,6 +2,7 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { ActionLog } from "@/components/game/ActionLog";
+import { BattleCommandBar } from "@/components/game/BattleCommandBar";
 import { CardInspectModal } from "@/components/game/CardInspectModal";
 import { CrystalSpinner } from "@/components/game/CrystalSpinner";
 import { DeckPile } from "@/components/game/DeckPile";
@@ -81,6 +82,15 @@ const STEP_LABEL: Record<MatchState["step"], string> = {
   pass: "Pass",
   hollowCrown: "Hollow Crown",
 };
+
+const COOP_STEPS = [
+  { id: "setup", label: "Setup" },
+  { id: "readyAndCharge", label: "Charge" },
+  { id: "play", label: "Play" },
+  { id: "battle", label: "Battle" },
+  { id: "pass", label: "Pass" },
+  { id: "hollowCrown", label: "Crown" },
+] as const;
 
 function MatchScreen() {
   const { state, loading, notice, dispatch, startNewMatch, loadFromJson, dismissNotice } =
@@ -248,28 +258,33 @@ function MatchScreen() {
       eyebrow="Cooperative QuickPlay"
       title="Truthwardens vs the Hollow Crown"
       description={`Round ${state.round} · ${STEP_LABEL[state.step]} · ${oath.cardsPlayedThisTurn}/${oath.cardPlayLimit} cards played`}
-      actions={
-        <div className="flex flex-wrap gap-2">
-          {state.step === "play" && yourTurn && (
-            <Button
-              variant="secondary"
-              onClick={() => dispatch({ kind: "beginStep", step: "battle" })}
-            >
-              Go to Battle
-            </Button>
-          )}
-          {yourTurn && !state.prompt && (
-            <Button onClick={() => dispatch({ kind: "endTurn" })}>End turn</Button>
-          )}
-          <Button variant="outline" onClick={() => setPaused(true)}>
-            Pause
-          </Button>
-        </div>
-      }
     >
       <MatchFxLayer animations={state.animations} />
 
       <MatchNotice message={notice} onDismiss={dismissNotice} />
+
+      <BattleCommandBar
+        round={state.round}
+        currentStep={state.step}
+        steps={COOP_STEPS}
+        summary={`${STEP_LABEL[state.step]} · ${oath.cardsPlayedThisTurn}/${oath.cardPlayLimit} cards played`}
+        status={yourTurn ? "Oathguard turn" : "Hollow Crown turn"}
+      >
+        {state.step === "play" && yourTurn && (
+          <Button
+            variant="secondary"
+            onClick={() => dispatch({ kind: "beginStep", step: "battle" })}
+          >
+            Go to Battle
+          </Button>
+        )}
+        {yourTurn && !state.prompt && (
+          <Button onClick={() => dispatch({ kind: "endTurn" })}>End turn</Button>
+        )}
+        <Button variant="outline" onClick={() => setPaused(true)}>
+          Pause
+        </Button>
+      </BattleCommandBar>
 
       {pendingHandId && (
         <Alert className="mb-4 border-oath-cyan/60" role="status">
