@@ -2,22 +2,22 @@
  * Cover artwork band used on the title screen and both mode landing pages.
  * Purely presentational: the art sits behind a scrim so overlaid text keeps
  * its contrast at every width.
+ *
+ * Updated: Uses externally-hosted hero art URLs that survive the Lovable migration.
  */
 import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
-import competitiveCover from "@/assets/competitive-cover-banner.png.asset.json";
-import coopCover from "@/assets/coop-cover-banner.png.asset.json";
 
 export type CoverArt = "cooperative" | "competitive";
 
 const ART: Record<CoverArt, { url: string; alt: string }> = {
   cooperative: {
-    url: coopCover.url,
+    url: "https://media.base44.com/images/public/6a6b8eae93005c22992c5c72/4fe4c7041_generated_image.png",
     alt: "Oathguard heroes holding the line against the Hollow Crown",
   },
   competitive: {
-    url: competitiveCover.url,
+    url: "https://media.base44.com/images/public/6a6b8eae93005c22992c5c72/4fe4c7041_generated_image.png",
     alt: "Two Oathguard hosts facing each other across a storm-split realm",
   },
 };

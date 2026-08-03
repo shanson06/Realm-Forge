@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { CSSProperties } from "react";
 import { AlertTriangle } from "lucide-react";
 
@@ -56,6 +57,7 @@ export function RealmCard({
   const hollow = allegiance === "hollow";
   const artUrl = cardArtUrl(card.id);
   const resourceLabel = hollow ? "Threat" : "Energy";
+  const [artError, setArtError] = useState(false);
 
   return (
     <button
@@ -89,27 +91,30 @@ export function RealmCard({
     >
       <span aria-hidden className="realm-card-circuit" />
 
+      {/* Header row: cost badge | name plate | crest — all vertically centered */}
       <header className="relative z-10 flex items-center gap-1 px-1 pt-1">
         <span
           aria-label={`${resourceLabel} ${card.cost}`}
           className={cn(
-            "realm-resource-badge flex shrink-0 flex-col items-center justify-center font-display font-bold text-foreground",
+            "realm-resource-badge flex shrink-0 items-center justify-center font-display font-bold text-foreground",
             badgeSize[size],
           )}
         >
-          <span className="leading-none">{card.cost}</span>
-          <span className="text-[0.42em] leading-none tracking-widest uppercase">
-            {hollow ? "T" : "E"}
+          <span className="flex flex-col items-center justify-center leading-none">
+            <span>{card.cost}</span>
+            <span className="text-[0.42em] leading-none tracking-widest uppercase">
+              {hollow ? "T" : "E"}
+            </span>
           </span>
         </span>
 
         <span className="realm-title-plate min-w-0 flex-1 px-1.5 py-1 text-center">
-          <span className="block truncate font-display leading-tight font-semibold tracking-wide text-foreground">
+          <span className="block w-full truncate text-center font-display leading-tight font-semibold tracking-wide text-foreground">
             {card.name}
           </span>
           <span
             className={cn(
-              "block truncate text-[0.58em] tracking-[0.18em] uppercase",
+              "block w-full truncate text-center text-[0.58em] tracking-[0.18em] uppercase",
               accentTextClass[allegiance],
             )}
           >
@@ -122,24 +127,29 @@ export function RealmCard({
         </span>
       </header>
 
+      {/* Art window — full-bleed, centered, with error fallback */}
       <div className={cn("relative z-10 mx-1 mt-1.5", artHeight[size])}>
         <div
           aria-hidden
           className={cn(
-            "realm-art-window flex size-full items-end justify-center overflow-hidden px-2 pb-1 text-center text-[0.6em] tracking-widest text-muted-foreground uppercase",
+            "realm-art-window flex size-full items-center justify-center overflow-hidden text-center text-[0.6em] tracking-widest text-muted-foreground uppercase",
             hollow ? "realm-art-hollow" : "realm-art-oath",
           )}
         >
-          {artUrl ? (
+          {artUrl && !artError ? (
             <img
               src={artUrl}
               alt=""
               loading="lazy"
               decoding="async"
+              onError={() => setArtError(true)}
               className="size-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.035]"
             />
           ) : (
-            "Art pending"
+            <div className="flex flex-col items-center justify-center gap-1 opacity-50">
+              <FactionCrest faction={card.faction} size="md" />
+              <span className="text-[0.8em]">{artError ? "Art unavailable" : "Art pending"}</span>
+            </div>
           )}
         </div>
 
@@ -168,6 +178,7 @@ export function RealmCard({
         )}
       </div>
 
+      {/* Keyword pills — centered row */}
       {card.keywords.length > 0 && (
         <ul className="relative z-10 mt-3 flex flex-wrap justify-center gap-1 px-1">
           {card.keywords.map((keyword) => (
@@ -181,6 +192,7 @@ export function RealmCard({
         </ul>
       )}
 
+      {/* Rules text panel — centered, no clipping */}
       <div
         className={cn(
           "realm-rules-glass relative z-10 mx-1 mt-1 flex-1 overflow-hidden px-1.5 py-1.5",
@@ -192,14 +204,15 @@ export function RealmCard({
           size="md"
           className="pointer-events-none absolute -right-1 -bottom-1 opacity-[0.08]"
         />
-        <p className="relative line-clamp-4 leading-snug text-foreground/90">{card.rules_text}</p>
+        <p className="relative text-center leading-snug text-foreground/90">{card.rules_text}</p>
       </div>
 
-      <footer className="relative z-10 mt-auto flex items-center gap-1 overflow-hidden px-1.5 pt-1 pb-0.5 text-[0.58em] tracking-widest uppercase">
+      {/* Footer — centered rarity + card ID */}
+      <footer className="relative z-10 mt-auto flex items-center justify-center gap-1 overflow-hidden px-1.5 pt-1 pb-0.5 text-[0.58em] tracking-widest uppercase">
         <span className="truncate text-muted-foreground">{card.rarity}</span>
         <span aria-hidden className="realm-edition-gem ml-0.5" />
         {damage > 0 && <span className="shrink-0 text-realm-danger">−{damage}</span>}
-        <span className="ml-auto shrink-0 text-oath-gold/70">{card.id}</span>
+        <span className="shrink-0 text-oath-gold/70">{card.id}</span>
         {effectStatus === "not-implemented" && (
           <span
             className="shrink-0 text-realm-danger"
